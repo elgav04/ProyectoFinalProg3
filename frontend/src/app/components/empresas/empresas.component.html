@@ -1,0 +1,158 @@
+<h1>Registro de Empresas</h1>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #f="ngForm" (ngSubmit)="AgregarValor()" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cempresa" name="cempresa" class="form-control" placeholder="No." required hidden>
+        </div>
+
+        <div class="col-md-6">
+        <label for="empresa" class="form-label">Nombre de la Empresa</label>
+        <input type="text" [(ngModel)]="user.empresa" name="empresa" placeholder="Digite el nombre" class="form-control"
+            required
+           #empresa="ngModel"
+           [ngClass]="{'is-invalid': empresa.invalid && f.submitted}">
+            <div *ngIf="empresa.invalid && f.submitted" class="invalid-feedback">
+            El nombre es obligatorio.
+            </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="identificacion" class="form-label">Identificación</label>
+        <input type="text" [(ngModel)]="user.identificacion" name="identificacion" placeholder="Digite la identificación" class="form-control" required
+        minlength="5"
+        #identificacion="ngModel"
+        [ngClass]="{'is-invalid': identificacion.invalid && f.submitted}">
+        <div *ngIf="identificacion.invalid && f.submitted" class="invalid-feedback">
+        La identificación es obligatoria (mínimo 5 caracteres).
+        </div>
+        </div>
+
+        <div class="col-12">
+        <label for="direccion" class="form-label">Dirección</label>
+        <input type="text" [(ngModel)]="user.direccion" name="direccion" placeholder="Digite la dirección" class="form-control"
+        required
+        #direccion="ngModel"
+        [ngClass]="{'is-invalid': direccion.invalid && f.submitted}">
+        <div *ngIf="direccion.invalid && f.submitted" class="invalid-feedback">
+        La dirección es obligatoria.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" [(ngModel)]="user.telefono" name="telefono" placeholder="Digite el teléfono" class="form-control"
+        pattern="^([0-9]{8}|[0-9]{4}-[0-9]{4})$"
+        required
+        #telefono="ngModel"
+        [ngClass]="{'is-invalid': telefono.invalid && f.submitted}">
+        <div *ngIf="telefono.invalid && f.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="extension" class="form-label">Extensión</label>
+        <input type="text" [(ngModel)]="user.extension" name="extension" placeholder="Digite el extensión" class="form-control"
+        #extension="ngModel">
+        </div>
+
+        <div class="col-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" [(ngModel)]="user.correo" name="correo" placeholder="Digite el correo" class="form-control"
+        required
+        email
+        #correo="ngModel"
+        [ngClass]="{'is-invalid': correo.invalid && f.submitted}">
+        <div *ngIf="correo.invalid && f.submitted" class="invalid-feedback">
+        Ingrese un correo electrónico válido.
+        </div>       
+        </div>
+
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Ingreso</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && f.submitted}">
+        <div *ngIf="fecha.invalid && f.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <!--
+        <div class="col-md-4">
+        <label for="estado" class="form-label"></label>
+        <select id="estado" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+        </div>
+        -->
+        
+        <div class="d-grid col-3 ms-auto">
+            <button type="submit" class="btn btn-primary" formnovalidate value="Save">Agregar</button>
+        </div>
+    </form>
+</div>
+
+<br>
+
+ <div class="container-fluid">  
+    <div class="row mt-25">          
+   <table class="table table-striped table-hover">
+    
+     <thead>
+        <tr>
+            <th>NO</th>
+            <th>EMPRESA</th>
+            <th>IDENTIFICACIÓN</th>
+            <th>DIRECCIÓN</th>
+            <th>TELEFONO</th>          
+            <th>EXTENSIÓN</th>
+            <th>CORREO</th>
+            <th>FECHA CREACIÓN</th>
+            <th>ESTADO</th>
+            <th colspan="2">ACCIONES</th>
+        </tr>
+  
+      </thead>
+    <tbody >
+                <tr>
+                    <td >cempresa</td>
+                    <td >empresa</td>
+                    <td >identificacion</td>
+                    <td >direcion</td>
+                    <td >telefono</td>
+                    <td >extension</td>
+                    <td >correo</td>
+                    <td >fecha</td>
+                    <td >estado</td>
+                    <td>  <button  class="btn btn-danger w-100">Eliminar</button> </td>
+                    <td>
+                        <button  class="btn btn-success w-100">Actualizar</button></td>
+                </tr>
+  
+                <tr *ngFor="let User of TUser">
+                    <td >{{User.cempresa}}</td>
+                    <td >{{User.empresa}}</td>
+                    <td >{{User.identificacion}}</td>
+                    <td >{{User.direcion}}</td>
+                    <td >{{User.telefono}}</td>
+                    <td >{{User.extension}}</td>
+                    <td >{{User.correo}}</td>
+                    <td >{{User.fecha}}</td>
+                    <td >{{User.estado}}</td>
+                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cempresa)" onclick="javascript:alert('Registro Eliminado')" >Eliminar</button> </td>
+                    <td>
+                        <button  class="btn btn-success" [routerLink]="['/empresas/edit', User.cempresa]">Actualizar</button></td>
+                  </tr>
+  
+     </tbody>
+   </table>
+</div>
+</div>
+
+

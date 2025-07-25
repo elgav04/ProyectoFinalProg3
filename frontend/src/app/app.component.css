@@ -1,0 +1,19 @@
+    #main-layout {
+        height: 100vh;
+    }
+  
+  #right-content {
+    width: 100%;
+    transition: margin-left 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden; 
+    max-width: 100%;
+    width: 100%;
+  }
+  

@@ -1,0 +1,13 @@
+<div class="d-flex" id="main-layout">
+  <!-- Sidebar a la izquierda -->
+  <app-sidebar *ngIf="!isLoginPage"></app-sidebar>
+
+  <!-- Contenedor derecho: Header + Contenido -->
+  <div class="d-flex flex-column flex-grow-1" id="right-content">
+    <app-header *ngIf="!isLoginPage"></app-header>
+
+    <div class="flex-grow-1 p-3" id="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
