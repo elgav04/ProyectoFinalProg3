@@ -1,0 +1,109 @@
+<h1>Actualizar Registro Empresa</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cempresa" name="cempresa" class="form-control" placeholder="No." required hidden>
+        </div>
+
+        <div class="col-md-6">
+        <label for="empresa" class="form-label">Nombre de la Empresa</label>
+        <input type="text" [(ngModel)]="user.empresa" name="empresa" placeholder="Digite el nombre" class="form-control"
+            required
+           #empresa="ngModel"
+           [ngClass]="{'is-invalid': empresa.invalid && formularioNgForm.submitted}">
+            <div *ngIf="empresa.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El nombre es obligatorio.
+            </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="identificacion" class="form-label">Identificación</label>
+        <input type="text" [(ngModel)]="user.identificacion" name="identificacion" placeholder="Digite la identificación" class="form-control" required
+        minlength="5"
+        #identificacion="ngModel"
+        [ngClass]="{'is-invalid': identificacion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="identificacion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La identificación es obligatoria (mínimo 5 caracteres).
+        </div>
+        </div>
+
+        <div class="col-12">
+        <label for="direccion" class="form-label">Dirección</label>
+        <input type="text" [(ngModel)]="user.direccion" name="direccion" placeholder="Digite la dirección" class="form-control"
+        required
+        #direccion="ngModel"
+        [ngClass]="{'is-invalid': direccion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="direccion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La dirección es obligatoria.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" [(ngModel)]="user.telefono" name="telefono" placeholder="Digite el teléfono" class="form-control"
+        pattern="^([0-9]{8}|[0-9]{4}-[0-9]{4})$"
+        required
+        #telefono="ngModel"
+        [ngClass]="{'is-invalid': telefono.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefono.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="extension" class="form-label">Extensión</label>
+        <input type="text" [(ngModel)]="user.extension" name="extension" placeholder="Digite el extensión" class="form-control"
+        #extension="ngModel">
+        </div>
+
+        <div class="col-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" [(ngModel)]="user.correo" name="correo" placeholder="Digite el correo" class="form-control"
+        required
+        email
+        #correo="ngModel"
+        [ngClass]="{'is-invalid': correo.invalid && formularioNgForm.submitted}">
+        <div *ngIf="correo.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un correo electrónico válido.
+        </div>       
+        </div>
+
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Ingreso</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" formnovalidate (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>

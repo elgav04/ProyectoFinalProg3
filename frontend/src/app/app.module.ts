@@ -11,13 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
+import { EmpresasEditComponent } from './components/empresas-edit/empresas-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     HeaderComponent,
-    EmpresasComponent
+    EmpresasComponent,
+    EmpresasEditComponent
   ],
   imports: [
     BrowserModule,

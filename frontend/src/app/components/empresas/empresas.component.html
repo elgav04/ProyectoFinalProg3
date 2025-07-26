@@ -1,7 +1,7 @@
 <h1>Registro de Empresas</h1>
 
 <div class="container-fluid">
-    <form id="formulario" name="formulario" class="row g-3" #f="ngForm" (ngSubmit)="AgregarValor()" novalidate>
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" (ngSubmit)="AgregarValor()" novalidate>
 
         <div class="col-md-3" hidden>
         <label for="" class="form-label" hidden>No.</label>
@@ -13,8 +13,8 @@
         <input type="text" [(ngModel)]="user.empresa" name="empresa" placeholder="Digite el nombre" class="form-control"
             required
            #empresa="ngModel"
-           [ngClass]="{'is-invalid': empresa.invalid && f.submitted}">
-            <div *ngIf="empresa.invalid && f.submitted" class="invalid-feedback">
+           [ngClass]="{'is-invalid': empresa.invalid && formularioNgForm.submitted}">
+            <div *ngIf="empresa.invalid && formularioNgForm.submitted" class="invalid-feedback">
             El nombre es obligatorio.
             </div>
         </div>
@@ -24,8 +24,8 @@
         <input type="text" [(ngModel)]="user.identificacion" name="identificacion" placeholder="Digite la identificación" class="form-control" required
         minlength="5"
         #identificacion="ngModel"
-        [ngClass]="{'is-invalid': identificacion.invalid && f.submitted}">
-        <div *ngIf="identificacion.invalid && f.submitted" class="invalid-feedback">
+        [ngClass]="{'is-invalid': identificacion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="identificacion.invalid && formularioNgForm.submitted" class="invalid-feedback">
         La identificación es obligatoria (mínimo 5 caracteres).
         </div>
         </div>
@@ -35,8 +35,8 @@
         <input type="text" [(ngModel)]="user.direccion" name="direccion" placeholder="Digite la dirección" class="form-control"
         required
         #direccion="ngModel"
-        [ngClass]="{'is-invalid': direccion.invalid && f.submitted}">
-        <div *ngIf="direccion.invalid && f.submitted" class="invalid-feedback">
+        [ngClass]="{'is-invalid': direccion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="direccion.invalid && formularioNgForm.submitted" class="invalid-feedback">
         La dirección es obligatoria.
         </div>
         </div>
@@ -47,8 +47,8 @@
         pattern="^([0-9]{8}|[0-9]{4}-[0-9]{4})$"
         required
         #telefono="ngModel"
-        [ngClass]="{'is-invalid': telefono.invalid && f.submitted}">
-        <div *ngIf="telefono.invalid && f.submitted" class="invalid-feedback">
+        [ngClass]="{'is-invalid': telefono.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefono.invalid && formularioNgForm.submitted" class="invalid-feedback">
         Ingrese un número válido de 8 dígitos.
         </div>
         </div>
@@ -65,8 +65,8 @@
         required
         email
         #correo="ngModel"
-        [ngClass]="{'is-invalid': correo.invalid && f.submitted}">
-        <div *ngIf="correo.invalid && f.submitted" class="invalid-feedback">
+        [ngClass]="{'is-invalid': correo.invalid && formularioNgForm.submitted}">
+        <div *ngIf="correo.invalid && formularioNgForm.submitted" class="invalid-feedback">
         Ingrese un correo electrónico válido.
         </div>       
         </div>
@@ -76,8 +76,8 @@
         <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
         required
         #fecha="ngModel"
-        [ngClass]="{'is-invalid': fecha.invalid && f.submitted}">
-        <div *ngIf="fecha.invalid && f.submitted" class="invalid-feedback">
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
         La fecha es obligatoria.
         </div> 
         </div>
@@ -145,7 +145,7 @@
                     <td >{{User.correo}}</td>
                     <td >{{User.fecha}}</td>
                     <td >{{User.estado}}</td>
-                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cempresa)" onclick="javascript:alert('Registro Eliminado')" >Eliminar</button> </td>
+                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cempresa)">Eliminar</button> </td>
                     <td>
                         <button  class="btn btn-success" [routerLink]="['/empresas/edit', User.cempresa]">Actualizar</button></td>
                   </tr>
@@ -155,4 +155,39 @@
 </div>
 </div>
 
+<!-- Modal de éxito -->
+<div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="modalExitoLabel">Registro exitoso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¡El registro se ha guardado correctamente!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal de eliminación -->
+<div class="modal fade" id="modalEliminado" tabindex="-1" aria-labelledby="modalEliminadoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalEliminadoLabel">Registro eliminado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          El registro ha sido eliminado correctamente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
