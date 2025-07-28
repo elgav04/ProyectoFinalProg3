@@ -26,7 +26,7 @@ app.use(cors(
 
 
 // rutas backend
-//const areas_trabajoRoutes = require('./rutas/areas_trabajo');
+const empresasRoutes = require('./rutas/empresas');
 
 
 
@@ -60,7 +60,7 @@ app.use(bodyParser.json());
 
 
 // rutas frontend
-//app.use('/api/empresa', empresaRoutes);
+app.use('/api/empresas', empresasRoutes);
 
 
 // archivos estaticos frontend

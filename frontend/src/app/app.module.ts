@@ -12,6 +12,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
 import { EmpresasEditComponent } from './components/empresas-edit/empresas-edit.component';
+import { FilterempresaPipe } from './pipes/filterempresa.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EmpresasEditComponent } from './components/empresas-edit/empresas-edit.
     SidebarComponent,
     HeaderComponent,
     EmpresasComponent,
-    EmpresasEditComponent
+    EmpresasEditComponent,
+    FilterempresaPipe
   ],
   imports: [
     BrowserModule,

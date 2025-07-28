@@ -6,7 +6,7 @@
 
         <div class="col-md-3" hidden>
         <label for="" class="form-label" hidden>No.</label>
-        <input type="text" readonly="readonly" [(ngModel)]="user.cempresa" name="cempresa" class="form-control" placeholder="No." required hidden>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cempresa" name="cempresa" class="form-control" placeholder="No." hidden>
         </div>
 
         <div class="col-md-6">
@@ -103,7 +103,25 @@
         </div>
         
         <div class="col-3 ms-auto d-grid align-self-end">
-            <button type="submit" class="btn btn-warning w-100" formnovalidate (click)="updateUser()" >Actualizar</button>
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
         </div>
     </form>
 </div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

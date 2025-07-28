@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { empresas } from 'src/app/interfaces/user.interface';
 import { DataService } from '../../services/data.service';
+import { NgForm } from '@angular/forms';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 declare var bootstrap: any;
+
 
 @Component({
   selector: 'app-empresas',
@@ -24,6 +30,11 @@ export class EmpresasComponent implements OnInit {
     estado: 'ACTIVO'
   }
 
+  filterPost = '';
+  name = 'Empresas.xlsx';
+
+  @ViewChild('formularioNgForm') formularioNgForm!: NgForm;
+
   constructor(private Data: DataService) { }
 
   ngOnInit(): void {
@@ -37,9 +48,13 @@ export class EmpresasComponent implements OnInit {
         }, err => console.error(err));
   }
 
-  @ViewChild('formularioNgForm') formularioNgForm: any;
-
   AgregarValor(){
+    if (!this.formularioNgForm.valid) {
+      console.warn('Formulario inválido');
+      console.log(this.formularioNgForm.controls);
+      return;
+    }
+
     delete this.user.cempresa;   
     this.Data.save(this.user,'/empresas')
        .subscribe(
@@ -68,6 +83,27 @@ export class EmpresasComponent implements OnInit {
         },
         err => console.error(err)
       );
+  }
+
+  exportToExcel(): void {
+    let element = document.getElementById('tabla');
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const book: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+    XLSX.writeFile(book, this.name);
+  }
+
+  public openPDF(): void {
+    let DATA: any = document.getElementById('tabla');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('empresas.pdf');
+    });
   }
 
 }
