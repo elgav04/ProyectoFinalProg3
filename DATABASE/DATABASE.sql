@@ -2,31 +2,31 @@ CREATE DATABASE logistica;
 USE logistica;
 
 CREATE TABLE tipousuarios (
-    ctipousuario INT PRIMARY KEY,
+    ctipousuario INT AUTO_INCREMENT PRIMARY KEY,
     tipousuario VARCHAR(50),
     estado VARCHAR(20)
 );
 select * from tipousuarios;
 
 CREATE TABLE tipoempleado (
-    ctipoemp INT PRIMARY KEY,
+    ctipoemp INT AUTO_INCREMENT PRIMARY KEY,
     tipoemp VARCHAR(50),
     estado VARCHAR(20)
 );
 
 CREATE TABLE tipovehiculos (
-    ctipov INT PRIMARY KEY,
+    ctipov INT AUTO_INCREMENT PRIMARY KEY,
     tipo VARCHAR(100),
     estado VARCHAR(20)
 );
 
 CREATE TABLE paises (
-    cpais INT PRIMARY KEY,
+    cpais INT AUTO_INCREMENT PRIMARY KEY,
     pais VARCHAR(50),
     estado VARCHAR(20)
 );
 CREATE TABLE brokers (
-    cbroker INT PRIMARY KEY,
+    cbroker INT AUTO_INCREMENT PRIMARY KEY,
     broker VARCHAR(50),
     calificacion VARCHAR(100),
     contacto VARCHAR(100),
@@ -38,7 +38,7 @@ CREATE TABLE brokers (
     estado VARCHAR(20)
 );
 CREATE TABLE empresas (
-    cempresa INT PRIMARY KEY,
+    cempresa INT AUTO_INCREMENT PRIMARY KEY,
     empresa VARCHAR(50),
     identificacion VARCHAR(50),
     direccion VARCHAR(500),
@@ -49,7 +49,7 @@ CREATE TABLE empresas (
     estado VARCHAR(20)
 );
 CREATE TABLE warehouses (
-    cwarehouse INT PRIMARY KEY,
+    cwarehouse INT AUTO_INCREMENT PRIMARY KEY,
     warehouse VARCHAR(100),
     direccion VARCHAR(500),
     telefono VARCHAR(20),
@@ -60,7 +60,7 @@ CREATE TABLE warehouses (
     estado VARCHAR(20)
 );
 CREATE TABLE transportistas (
-    ctransportista INT PRIMARY KEY,
+    ctransportista INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(100),
     identificacion VARCHAR(50),
     direccion VARCHAR(500),
@@ -73,7 +73,7 @@ CREATE TABLE transportistas (
     estado VARCHAR(20)
 );
 CREATE TABLE empleados (
-    cempleado INT PRIMARY KEY,
+    cempleado INT AUTO_INCREMENT PRIMARY KEY,
     ctipoemp INT,
     identificacion VARCHAR(20),
     nombres VARCHAR(50),
@@ -87,7 +87,7 @@ CREATE TABLE empleados (
     FOREIGN KEY (ctipoemp) REFERENCES tipoempleado(ctipoemp)
 );
 CREATE TABLE usuarios (
-    cusuario INT PRIMARY KEY,
+    cusuario  INT AUTO_INCREMENT PRIMARY KEY,
     ctipousuario INT,
     cempleado INT,
     usuario VARCHAR(50),
@@ -98,7 +98,7 @@ CREATE TABLE usuarios (
     FOREIGN KEY (cempleado) REFERENCES empleados(cempleado)
 );
 CREATE TABLE choferes (
-    cchofer INT PRIMARY KEY,
+    cchofer  INT AUTO_INCREMENT PRIMARY KEY,
     ctransportista INT,
     identificacion VARCHAR(50),
     nombres VARCHAR(50),
@@ -110,7 +110,7 @@ CREATE TABLE choferes (
     FOREIGN KEY (ctransportista) REFERENCES transportistas(ctransportista)
 );
 CREATE TABLE cargas (
-    ccarga INT PRIMARY KEY,
+    ccarga INT AUTO_INCREMENT PRIMARY KEY,
     cpais INT,
     cbroker INT,
     ctransportista INT,
