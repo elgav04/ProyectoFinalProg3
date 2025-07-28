@@ -10,6 +10,9 @@ import { TipousuariosEditComponent} from './components/tipousuarios-edit/tipousu
 import { TipoempleadoComponent } from './components/tipoempleado/tipoempleado.component';
 import { TipoempleadoEditComponent } from './components/tipoempleado-edit/tipoempleado-edit.component';
 
+import { TipovehiculosComponent } from './components/tipovehiculos/tipovehiculos.component';
+import { TipovehiculosEditComponent } from './components/tipovehiculos-edit/tipovehiculos-edit.component';
+
 const routes: Routes = [
   {
     path: 'empresas',
@@ -34,6 +37,14 @@ const routes: Routes = [
   {
     path: 'tipoempleado/edit/:id',
     component :TipoempleadoEditComponent
+  },
+  {
+    path: 'tipovehiculos',
+    component :TipovehiculosComponent
+  },
+  {
+    path: 'tipovehiculos/edit/:id',
+    component :TipovehiculosEditComponent
   }
 
 ];

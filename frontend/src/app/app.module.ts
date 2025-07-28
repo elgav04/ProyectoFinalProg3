@@ -19,6 +19,9 @@ import { FiltertipousuarioPipe } from './pipes/filtertipousuario.pipe';
 import { TipoempleadoComponent } from './components/tipoempleado/tipoempleado.component';
 import { TipoempleadoEditComponent } from './components/tipoempleado-edit/tipoempleado-edit.component';
 import { FiltertipoempleadoPipe } from './pipes/filtertipoempleado.pipe';
+import { TipovehiculosComponent } from './components/tipovehiculos/tipovehiculos.component';
+import { TipovehiculosEditComponent } from './components/tipovehiculos-edit/tipovehiculos-edit.component';
+import { FiltertipovehiculoPipe } from './pipes/filtertipovehiculo.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { FiltertipoempleadoPipe } from './pipes/filtertipoempleado.pipe';
     FiltertipousuarioPipe,
     TipoempleadoComponent,
     TipoempleadoEditComponent,
-    FiltertipoempleadoPipe
+    FiltertipoempleadoPipe,
+    TipovehiculosComponent,
+    TipovehiculosEditComponent,
+    FiltertipovehiculoPipe
   ],
   imports: [
     BrowserModule,

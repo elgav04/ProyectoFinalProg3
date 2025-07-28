@@ -29,6 +29,7 @@ app.use(cors(
 const empresasRoutes = require('./rutas/empresas');
 const tipousuariosRoutes = require('./rutas/tipousuarios');
 const tipoempleadoRoutes = require('./rutas/tipoempleado');
+const tipovehiculosRoutes = require('./rutas/tipovehiculos');
 
 
 
@@ -65,6 +66,7 @@ app.use(bodyParser.json());
 app.use('/api/empresas', empresasRoutes);
 app.use('/api/tipousuarios', tipousuariosRoutes);
 app.use('/api/tipoempleado', tipoempleadoRoutes);
+app.use('/api/tipovehiculos', tipovehiculosRoutes);
 
 
 // archivos estaticos frontend
