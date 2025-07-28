@@ -13,6 +13,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
 import { EmpresasEditComponent } from './components/empresas-edit/empresas-edit.component';
 import { FilterempresaPipe } from './pipes/filterempresa.pipe';
+import { TipousuariosComponent } from './components/tipousuarios/tipousuarios.component';
+import { TipousuariosEditComponent } from './components/tipousuarios-edit/tipousuarios-edit.component';
+import { FiltertipousuarioPipe } from './pipes/filtertipousuario.pipe';
+import { TipoempleadoComponent } from './components/tipoempleado/tipoempleado.component';
+import { TipoempleadoEditComponent } from './components/tipoempleado-edit/tipoempleado-edit.component';
+import { FiltertipoempleadoPipe } from './pipes/filtertipoempleado.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,13 @@ import { FilterempresaPipe } from './pipes/filterempresa.pipe';
     HeaderComponent,
     EmpresasComponent,
     EmpresasEditComponent,
-    FilterempresaPipe
+    FilterempresaPipe,
+    TipousuariosComponent,
+    TipousuariosEditComponent,
+    FiltertipousuarioPipe,
+    TipoempleadoComponent,
+    TipoempleadoEditComponent,
+    FiltertipoempleadoPipe
   ],
   imports: [
     BrowserModule,
