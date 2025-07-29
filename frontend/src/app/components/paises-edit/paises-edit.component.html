@@ -1,0 +1,66 @@
+<h1>Actualizar registro País</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+            <label for="" class="form-label" hidden>No.</label>
+            <input type="text" readonly="readonly" [(ngModel)]="user.cpais" name="cpais" class="form-control" placeholder="No." hidden>
+            </div>
+    
+            <div class="col-md-6">
+            <label for="pais" class="form-label">País</label>
+            <input type="text" [(ngModel)]="user.pais" name="pais" placeholder="Digite el país" class="form-control"
+                required
+               #pais="ngModel"
+               [ngClass]="{'is-invalid': pais.invalid && formularioNgForm.submitted}">
+                <div *ngIf="pais.invalid && formularioNgForm.submitted" class="invalid-feedback">
+                El país es obligatorio.
+                </div>
+            </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

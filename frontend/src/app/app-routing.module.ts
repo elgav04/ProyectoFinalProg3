@@ -13,6 +13,9 @@ import { TipoempleadoEditComponent } from './components/tipoempleado-edit/tipoem
 import { TipovehiculosComponent } from './components/tipovehiculos/tipovehiculos.component';
 import { TipovehiculosEditComponent } from './components/tipovehiculos-edit/tipovehiculos-edit.component';
 
+import { PaisesComponent } from './components/paises/paises.component';
+import { PaisesEditComponent } from './components/paises-edit/paises-edit.component';
+
 const routes: Routes = [
   {
     path: 'empresas',
@@ -45,6 +48,14 @@ const routes: Routes = [
   {
     path: 'tipovehiculos/edit/:id',
     component :TipovehiculosEditComponent
+  },
+  {
+    path: 'paises',
+    component :PaisesComponent
+  },
+  {
+    path: 'paises/edit/:id',
+    component :PaisesEditComponent
   }
 
 ];

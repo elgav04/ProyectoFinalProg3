@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const brokerscontroller = require('../controllers/brokers.controller');
+const brokersController = require('../controller/brokerscontroller');
 
-router.get('/brokers', brokerscontroller.list);
-router.post('/brokers', brokerscontroller.save);
-router.delete('/brokers/:cbrokers', brokerscontroller.delete);
-router.get('/brokers/:cbrokers', brokerscontroller.edit);
-router.post('/brokers/:cbrokers', brokerscontroller.update);
+router.get('/', brokersController.list);
+router.post('/', brokersController.save);
+router.delete('/:cbroker', brokersController.delete);
+router.get('/:cbroker', brokersController.edit);
+router.post('/:cbroker', brokersController.update);
 
 module.exports = router;
 

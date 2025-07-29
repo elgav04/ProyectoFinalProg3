@@ -30,6 +30,8 @@ const empresasRoutes = require('./rutas/empresas');
 const tipousuariosRoutes = require('./rutas/tipousuarios');
 const tipoempleadoRoutes = require('./rutas/tipoempleado');
 const tipovehiculosRoutes = require('./rutas/tipovehiculos');
+const paisesRoutes = require('./rutas/paises');
+//const brokersRoutes = require('./rutas/brokers');
 
 
 
@@ -67,6 +69,8 @@ app.use('/api/empresas', empresasRoutes);
 app.use('/api/tipousuarios', tipousuariosRoutes);
 app.use('/api/tipoempleado', tipoempleadoRoutes);
 app.use('/api/tipovehiculos', tipovehiculosRoutes);
+app.use('/api/paises', paisesRoutes);
+//app.use('/api/brokers', brokersRoutes);
 
 
 // archivos estaticos frontend

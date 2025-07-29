@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const paisescontroller = require('../controllers/paises.controller');
+const paisesController = require('../controller/paisescontroller');
 
-router.get('/paises', paisescontroller.list);
-router.post('/paises', paisescontroller.save);
-router.delete('/paises/:cpaise', paisescontroller.delete);
-router.get('/paises/:cpaise', paisescontroller.edit);
-router.post('/paises/:cpaise', paisescontroller.update);
+router.get('/', paisesController.list);
+router.post('/', paisesController.save);
+router.delete('/:cpais', paisesController.delete);
+router.get('/:cpais', paisesController.edit);
+router.post('/:cpais', paisesController.update);
 
 module.exports = router;

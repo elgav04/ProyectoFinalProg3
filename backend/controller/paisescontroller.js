@@ -3,20 +3,20 @@ const controller = {}
 
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM paises', (err, rows) => {
+        conn.query('SELECT * FROM paises', (err, paises) => {
             if (err) return res.json(err);
-            res.json(rows);
+            res.json(paises);
         });
     });
 };
 
 
 controller.edit = (req, res) => {
-    const { cpaise } = req.params;
+    const { cpais } = req.params;
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM paises WHERE cpaise = ?', [cpaise], (err, row) => {
+        conn.query('SELECT * FROM paises WHERE cpais = ?', [cpais], (err, pais) => {
             if (err) return res.json(err);
-            res.json(row[0]);
+            res.json(pais[0]);
         });
     });
 };
@@ -25,32 +25,32 @@ controller.edit = (req, res) => {
 controller.save = (req, res) => {
     const data = req.body;
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO paises SET ?', [data], (err, result) => {
+        conn.query('INSERT INTO paises SET ?', [data], (err, pais) => {
             if (err) return res.json(err);
-            res.json({ message: "Paise guardado", id: result.insertId });
+            res.json(pais);
         });
     });
 };
 
 
 controller.update = (req, res) => {
-    const { cpaise } = req.params;
-    const data = req.body;
+    const { cpais } = req.params;
+    const nuevo_pais = req.body;
     req.getConnection((err, conn) => {
-        conn.query('UPDATE paises SET ? WHERE cpaise = ?', [data, cpaise], (err) => {
+        conn.query('UPDATE paises SET ? WHERE cpais = ?', [nuevo_pais, cpais], (err) => {
             if (err) return res.json(err);
-            res.json({ message: "Paise actualizado" });
+            res.json({ message: "Registro actualizado" });
         });
     });
 };
 
 
 controller.delete = (req, res) => {
-    const { cpaise } = req.params;
+    const { cpais } = req.params;
     req.getConnection((err, conn) => {
-        conn.query('DELETE FROM paises WHERE cpaise = ?', [cpaise], (err) => {
+        conn.query('UPDATE paises SET estado = "INACTIVO" WHERE cpais = ?', [cpais], (err) => {
             if (err) return res.json(err);
-            res.json({ message: "Paise eliminado" });
+            res.json({ message: "Registro eliminado" });
         });
     });
 };
