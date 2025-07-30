@@ -46,6 +46,7 @@ import { FilterchoferPipe } from './pipes/filterchofer.pipe';
 import { CargasComponent } from './components/cargas/cargas.component';
 import { CargasEditComponent } from './components/cargas-edit/cargas-edit.component';
 import { FiltercargaPipe } from './pipes/filtercarga.pipe';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { FiltercargaPipe } from './pipes/filtercarga.pipe';
     FilterchoferPipe,
     CargasComponent,
     CargasEditComponent,
-    FiltercargaPipe
+    FiltercargaPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
