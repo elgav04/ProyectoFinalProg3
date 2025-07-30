@@ -1,0 +1,139 @@
+<h1>Actualizar Registro Broker</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cbroker" name="cbroker" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-md-6">
+        <label for="broker" class="form-label">Nombre del broker</label>
+        <input type="text" [(ngModel)]="user.broker" name="broker" placeholder="Digite el broker" class="form-control"
+            required
+            #broker="ngModel"
+            [ngClass]="{'is-invalid': broker.invalid && formularioNgForm.submitted}">
+            <div *ngIf="broker.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El broker es obligatorio.
+            </div>
+        </div>
+
+        <div class="col-3">
+            <label for="calificacion" class="form-label">Calificación</label>
+            <input type="text" [(ngModel)]="user.calificacion" name="calificacion" placeholder="Digite el calificación" class="form-control"
+            #calificacion="ngModel">
+            </div>
+
+        <div class="col-12">
+        <label for="contacto" class="form-label">Contacto</label>
+        <input type="text" [(ngModel)]="user.contacto" name="contacto" placeholder="Digite el contacto" class="form-control"
+        required
+        #contacto="ngModel"
+        [ngClass]="{'is-invalid': contacto.invalid && formularioNgForm.submitted}">
+        <div *ngIf="contacto.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El contacto es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" [(ngModel)]="user.telefono" name="telefono" placeholder="Digite el teléfono" class="form-control"
+        pattern="^[0-9]{8}$|^[0-9]{4}-[0-9]{4}$"
+        required
+        #telefono="ngModel"
+        [ngClass]="{'is-invalid': telefono.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefono.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" [(ngModel)]="user.correo" name="correo" placeholder="Digite el correo" class="form-control"
+        required
+        email
+        #correo="ngModel"
+        [ngClass]="{'is-invalid': correo.invalid && formularioNgForm.submitted}">
+        <div *ngIf="correo.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un correo electrónico válido.
+        </div>       
+        </div>
+
+        <div class="col-3">
+            <label for="mc" class="form-label">Número MC</label>
+            <input type="email" [(ngModel)]="user.mc" name="mc" placeholder="Digite el número MC" class="form-control"
+            required
+            #mc="ngModel"
+            [ngClass]="{'is-invalid': mc.invalid && formularioNgForm.submitted}">
+            <div *ngIf="mc.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            Ingrese un número MC válido.
+            </div>       
+        </div>
+
+        <div class="col-3">
+            <label for="dot" class="form-label">Número DOT</label>
+            <input type="dot" [(ngModel)]="user.dot" name="dot" placeholder="Digite el número DOT" class="form-control"
+            required
+            #dot="ngModel"
+            [ngClass]="{'is-invalid': dot.invalid && formularioNgForm.submitted}">
+            <div *ngIf="dot.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            Ingrese un número DOT válido.
+            </div>       
+        </div>
+
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Ingreso</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

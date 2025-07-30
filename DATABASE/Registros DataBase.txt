@@ -48,18 +48,18 @@ INSERT INTO warehouses (warehouse, direccion, telefono, contacto, horaapertura, 
 ('Depósito Danlí', 'Bo. San Sebastián, Danlí', '2766-5544', 'María Luisa Romero', '08:00', '17:00', 'Ideal para alimentos secos', 'ACTIVO');
 
 INSERT INTO transportistas (descripcion, identificacion, direccion, telefono, correo, observaciones, fecha, cantidadv, porcentaje, estado) VALUES
-('Transporte Copán', '0801198500999', 'Santa Rosa de Copán', '2663-1111', 'copan@transporte.hn', 'Rutas al occidente', NOW(), 8, 0.1500, 'ACTIVO'),
-('Carga Express HN', '0801199100123', 'La Ceiba', '2440-2233', 'carga@express.hn', 'Servicio rápido', NOW(), 5, 0.1200, 'ACTIVO'),
-('Transportes Unidos', '0801198000567', 'Choluteca', '2789-3344', 'tunidos@logistica.hn', 'Flota moderna', NOW(), 10, 0.1800, 'ACTIVO'),
-('Camiones del Sur', '0801198300345', 'Nacaome', '2780-5566', 'surcamiones@hnmail.hn', 'Especializados en materiales pesados', NOW(), 6, 0.1300, 'INACTIVO'),
-('Cotransur', '0801199400112', 'Tegucigalpa', '2233-8899', 'info@cotransur.hn', 'Cobertura nacional', NOW(), 12, 0.2000, 'ACTIVO');
+('Transporte Copán', '0801198500999', 'Santa Rosa de Copán', '2663-1111', 'copan@transporte.hn', 'Rutas al occidente', NOW(), 8, 15.00, 'ACTIVO'),
+('Carga Express HN', '0801199100123', 'La Ceiba', '2440-2233', 'carga@express.hn', 'Servicio rápido', NOW(), 5, 12.00, 'ACTIVO'),
+('Transportes Unidos', '0801198000567', 'Choluteca', '2789-3344', 'tunidos@logistica.hn', 'Flota moderna', NOW(), 10, 18.00, 'ACTIVO'),
+('Camiones del Sur', '0801198300345', 'Nacaome', '2780-5566', 'surcamiones@hnmail.hn', 'Especializados en materiales pesados', NOW(), 6, 13.50, 'INACTIVO'),
+('Cotransur', '0801199400112', 'Tegucigalpa', '2233-8899', 'info@cotransur.hn', 'Cobertura nacional', NOW(), 12, 20.00, 'ACTIVO');
 
 INSERT INTO empleados (ctipoemp, identificacion, nombres, apellidos, direccion, telefono, correo, fecha, porcentaje, estado) VALUES
-(1, '0801198700001', 'José', 'Ramírez', 'Col. Kennedy, Tegucigalpa', '2234-5566', 'jramirez@logistica.hn', NOW(), 0.1000, 'ACTIVO'),
-(2, '0801199000022', 'Ana', 'Gómez', 'Col. Jardines del Valle, SPS', '2558-3344', 'agomez@logistica.hn', NOW(), 0.0800, 'ACTIVO'),
-(3, '0801198500033', 'Luis', 'Martínez', 'Bo. El Centro, Choluteca', '2788-4455', 'lmartinez@logistica.hn', NOW(), 0.0700, 'ACTIVO'),
-(4, '0801199500044', 'Carla', 'Ordoñez', 'Bo. El Carmen, La Ceiba', '2440-6677', 'cordonez@logistica.hn', NOW(), 0.0900, 'ACTIVO'),
-(5, '0801198200055', 'Marco', 'Vásquez', 'Col. El Prado, Comayagua', '2777-8899', 'mvasquez@logistica.hn', NOW(), 0.0600, 'INACTIVO');
+(1, '0801198700001', 'José', 'Ramírez', 'Col. Kennedy, Tegucigalpa', '2234-5566', 'jramirez@logistica.hn', NOW(), 10.00, 'ACTIVO'),
+(2, '0801199000022', 'Ana', 'Gómez', 'Col. Jardines del Valle, SPS', '2558-3344', 'agomez@logistica.hn', NOW(), 08.00, 'ACTIVO'),
+(3, '0801198500033', 'Luis', 'Martínez', 'Bo. El Centro, Choluteca', '2788-4455', 'lmartinez@logistica.hn', NOW(), 7.00, 'ACTIVO'),
+(4, '0801199500044', 'Carla', 'Ordoñez', 'Bo. El Carmen, La Ceiba', '2440-6677', 'cordonez@logistica.hn', NOW(), 9.00, 'ACTIVO'),
+(5, '0801198200055', 'Marco', 'Vásquez', 'Col. El Prado, Comayagua', '2777-8899', 'mvasquez@logistica.hn', NOW(), 6.00, 'INACTIVO');
 
 INSERT INTO usuarios (ctipousuario, cempleado, usuario, clave, fecha, estado) VALUES
 (1, 1, 'admin1', 'clave123', DATE(), 'ACTIVO'),

@@ -62,4 +62,9 @@ export class DataService {
     return throwError(errorMessage);
   }
 
+  getDropListTipoempleado():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/tipoempleado')
+    }
+    
+
 }

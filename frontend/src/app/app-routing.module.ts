@@ -16,6 +16,18 @@ import { TipovehiculosEditComponent } from './components/tipovehiculos-edit/tipo
 import { PaisesComponent } from './components/paises/paises.component';
 import { PaisesEditComponent } from './components/paises-edit/paises-edit.component';
 
+import { BrokersComponent } from './components/brokers/brokers.component';
+import { BrokersEditComponent } from './components/brokers-edit/brokers-edit.component';
+
+import { WarehousesComponent } from './components/warehouses/warehouses.component';
+import { WarehousesEditComponent } from './components/warehouses-edit/warehouses-edit.component';
+
+import { TransportistasComponent } from './components/transportistas/transportistas.component';
+import { TransportistasEditComponent } from './components/transportistas-edit/transportistas-edit.component';
+
+import { EmpleadosComponent } from './components/empleados/empleados.component';
+import { EmpleadosEditComponent } from './components/empleados-edit/empleados-edit.component';
+
 const routes: Routes = [
   {
     path: 'empresas',
@@ -56,6 +68,38 @@ const routes: Routes = [
   {
     path: 'paises/edit/:id',
     component :PaisesEditComponent
+  },
+  {
+    path: 'brokers',
+    component :BrokersComponent
+  },
+  {
+    path: 'brokers/edit/:id',
+    component :BrokersEditComponent
+  },
+  {
+    path: 'warehouses',
+    component :WarehousesComponent
+  },
+  {
+    path: 'warehouses/edit/:id',
+    component :WarehousesEditComponent
+  },
+  {
+    path: 'transportistas',
+    component :TransportistasComponent
+  },
+  {
+    path: 'transportistas/edit/:id',
+    component :TransportistasEditComponent
+  },
+  {
+    path: 'empleados',
+    component :EmpleadosComponent
+  },
+  {
+    path: 'empleados/edit/:id',
+    component :EmpleadosEditComponent
   }
 
 ];

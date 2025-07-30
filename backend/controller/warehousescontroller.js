@@ -1,54 +1,49 @@
-const controller = {}
-
+const controller = {};
 
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM transportistas', (err, rows) => {
+        conn.query('SELECT * FROM warehouses', (err, warehouses) => {
             if (err) return res.json(err);
-            res.json(rows);
+            res.json(warehouses);
         });
     });
 };
-
 
 controller.edit = (req, res) => {
-    const { ctransportista } = req.params;
+    const { cwarehouse } = req.params;
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM transportistas WHERE ctransportista = ?', [ctransportista], (err, transportista) => {
+        conn.query('SELECT * FROM warehouses WHERE cwarehouse = ?', [cwarehouse], (err, warehouses) => {
             if (err) return res.json(err);
-            res.json(transportista[0]);
+            res.json(warehouses[0]);
         });
     });
 };
-
 
 controller.save = (req, res) => {
     const data = req.body;
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO transportistas SET ?', [data], (err, transportistas) => {
+        conn.query('INSERT INTO warehouses SET ?', [data], (err, warehouses) => {
             if (err) return res.json(err);
-            res.json({transportistas});
+            res.json( warehouses);
         });
     });
 };
 
-
 controller.update = (req, res) => {
-    const { ctransportista } = req.params;
-    const nuevo_transportista = req.body;
+    const { cwarehouse } = req.params;
+    const nuevo_warehouse = req.body;
     req.getConnection((err, conn) => {
-        conn.query('UPDATE transportistas SET ? WHERE ctransportista = ?', [nuevo_transportista, ctransportista], (err) => {
+        conn.query('UPDATE warehouses SET ? WHERE cwarehouse = ?', [nuevo_warehouse, cwarehouse], (err) => {
             if (err) return res.json(err);
             res.json({ message: "Registro actualizado" });
         });
     });
 };
 
-
 controller.delete = (req, res) => {
-    const { ctransportista } = req.params;
+    const { cwarehouse } = req.params;
     req.getConnection((err, conn) => {
-        conn.query('UPDATE transportistas SET estado = "INACTIVO" WHERE ctransportista = ?', [ctransportista], (err) => {
+        conn.query('UPDATE warehouses SET estado = "INACTIVO" WHERE cwarehouse = ?', [cwarehouse], (err) => {
             if (err) return res.json(err);
             res.json({ message: "Registro eliminado" });
         });

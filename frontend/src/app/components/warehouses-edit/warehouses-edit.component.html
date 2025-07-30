@@ -1,0 +1,140 @@
+<h1>Actualizar Registro Warehouse</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cwarehouse" name="cwarehouse" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-md-6">
+        <label for="warehouse" class="form-label">Nombre Warehouse</label>
+        <input type="text" [(ngModel)]="user.warehouse" name="warehouse" placeholder="Digite el nombre del warehouse" class="form-control"
+            required
+            #warehouse="ngModel"
+            [ngClass]="{'is-invalid': warehouse.invalid && formularioNgForm.submitted}">
+            <div *ngIf="warehouse.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El nombre del warehouse es obligatorio.
+            </div>
+        </div>
+
+        <div class="col-6">
+        <label for="direccion" class="form-label">Dirección</label>
+        <input type="text" [(ngModel)]="user.direccion" name="direccion" placeholder="Digite la dirección" class="form-control"
+        required
+        #direccion="ngModel"
+        [ngClass]="{'is-invalid': direccion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="direccion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La dirección es obligatoria.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" [(ngModel)]="user.telefono" name="telefono" placeholder="Digite el teléfono" class="form-control"
+        pattern="^[0-9]{8}$|^[0-9]{4}-[0-9]{4}$"
+        required
+        #telefono="ngModel"
+        [ngClass]="{'is-invalid': telefono.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefono.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-5">
+        <label for="contacto" class="form-label">Contacto</label>
+        <input type="text" [(ngModel)]="user.contacto" name="contacto" placeholder="Digite el nombre del contacto" class="form-control"
+        required
+        #contacto="ngModel"
+        [ngClass]="{'is-invalid': contacto.invalid && formularioNgForm.submitted}">
+        <div *ngIf="contacto.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El contacto es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-2">
+        <label for="horaapertura" class="form-label">Hora de apertura</label>
+        <input
+            type="time"
+            [(ngModel)]="user.horaapertura"
+            name="horaapertura"
+            placeholder="Seleccione la hora de apertura"
+            class="form-control"
+            required
+            #horaapertura="ngModel"
+            [ngClass]="{'is-invalid': horaapertura.invalid && formularioNgForm.submitted}">
+            
+        <div *ngIf="horaapertura.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La hora de apertura es obligatoria.
+        </div>
+        </div>
+
+        <div class="col-2">
+        <label for="horacierre" class="form-label">Hora de cierre</label>
+        <input
+            type="time"
+            [(ngModel)]="user.horacierre"
+            name="horacierre"
+            placeholder="Seleccione la hora de cierre"
+            class="form-control"
+            required
+            #horacierre="ngModel"
+            [ngClass]="{'is-invalid': horacierre.invalid && formularioNgForm.submitted}">
+            
+        <div *ngIf="horacierre.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La hora de cierre es obligatoria.
+        </div>
+        </div>
+            
+
+        <div class="col-9">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <input type="text" [(ngModel)]="user.observaciones" name="observaciones" placeholder="Observaciones..." class="form-control"
+        #observaciones="ngModel">
+        </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

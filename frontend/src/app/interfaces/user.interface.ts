@@ -1,6 +1,6 @@
 export interface User{
     ctipou?: number;
-    descripcion?: string;
+    descripcion_user?: string;
     estado?: string;
   }
 

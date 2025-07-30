@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const empleadoscontroller = require('../controllers/empleados.controller');
+const empleadosController = require('../controller/empleadoscontroller');
 
-router.get('/empleados', empleadoscontroller.list);
-router.post('/empleados', empleadoscontroller.save);
-router.delete('/empleados/:cempleados', empleadoscontroller.delete);
-router.get('/empleados/:cempleados', empleadoscontroller.edit);
-router.post('/empleados/:cempleados', empleadoscontroller.update);
+router.get('/', empleadosController.list);
+router.post('/', empleadosController.save);
+router.delete('/:cempleado', empleadosController.delete);
+router.get('/:cempleado', empleadosController.edit);
+router.post('/:cempleado', empleadosController.update);
 
 module.exports = router;
+

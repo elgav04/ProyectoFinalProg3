@@ -25,6 +25,18 @@ import { FiltertipovehiculoPipe } from './pipes/filtertipovehiculo.pipe';
 import { PaisesComponent } from './components/paises/paises.component';
 import { PaisesEditComponent } from './components/paises-edit/paises-edit.component';
 import { FilterpaisPipe } from './pipes/filterpais.pipe';
+import { BrokersComponent } from './components/brokers/brokers.component';
+import { FilterbrokerPipe } from './pipes/filterbroker.pipe';
+import { BrokersEditComponent } from './components/brokers-edit/brokers-edit.component';
+import { WarehousesComponent } from './components/warehouses/warehouses.component';
+import { WarehousesEditComponent } from './components/warehouses-edit/warehouses-edit.component';
+import { FilterwarehousePipe } from './pipes/filterwarehouse.pipe';
+import { TransportistasComponent } from './components/transportistas/transportistas.component';
+import { TransportistasEditComponent } from './components/transportistas-edit/transportistas-edit.component';
+import { FiltertransportistaPipe } from './pipes/filtertransportista.pipe';
+import { EmpleadosComponent } from './components/empleados/empleados.component';
+import { EmpleadosEditComponent } from './components/empleados-edit/empleados-edit.component';
+import { FilterempleadoPipe } from './pipes/filterempleado.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +57,19 @@ import { FilterpaisPipe } from './pipes/filterpais.pipe';
     FiltertipovehiculoPipe,
     PaisesComponent,
     PaisesEditComponent,
-    FilterpaisPipe
+    FilterpaisPipe,
+    BrokersComponent,
+    FilterbrokerPipe,
+    BrokersEditComponent,
+    WarehousesComponent,
+    WarehousesEditComponent,
+    FilterwarehousePipe,
+    TransportistasComponent,
+    TransportistasEditComponent,
+    FiltertransportistaPipe,
+    EmpleadosComponent,
+    EmpleadosEditComponent,
+    FilterempleadoPipe
   ],
   imports: [
     BrowserModule,

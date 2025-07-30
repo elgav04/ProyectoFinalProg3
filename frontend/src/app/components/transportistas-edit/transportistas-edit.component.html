@@ -1,0 +1,162 @@
+<h1>Actualizar Registro Transportista</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.ctransportista" name="ctransportista" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-md-6">
+        <label for="descripcion" class="form-label">Nombre del transportista</label>
+        <input type="text" [(ngModel)]="user.descripcion" name="descripcion" placeholder="transportista" class="form-control"
+            required
+            #descripcion="ngModel"
+            [ngClass]="{'is-invalid': descripcion.invalid && formularioNgForm.submitted}">
+            <div *ngIf="descripcion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El nombre del transportista es obligatorio.
+            </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="identificacion" class="form-label">Identificación</label>
+        <input type="text" [(ngModel)]="user.identificacion" name="identificacion" placeholder="Digite la identificación" class="form-control" required
+        minlength="5"
+        #identificacion="ngModel"
+        [ngClass]="{'is-invalid': identificacion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="identificacion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La identificación es obligatoria (mínimo 5 caracteres).
+        </div>
+        </div>
+
+        <div class="col-9">
+        <label for="direccion" class="form-label">Dirección</label>
+        <input type="text" [(ngModel)]="user.direccion" name="direccion" placeholder="Digite la dirección" class="form-control"
+        required
+        #direccion="ngModel"
+        [ngClass]="{'is-invalid': direccion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="direccion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La dirección es obligatoria.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" [(ngModel)]="user.telefono" name="telefono" placeholder="Digite el teléfono" class="form-control"
+        pattern="^[0-9]{8}$|^[0-9]{4}-[0-9]{4}$"
+        required
+        #telefono="ngModel"
+        [ngClass]="{'is-invalid': telefono.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefono.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" [(ngModel)]="user.correo" name="correo" placeholder="Digite el correo" class="form-control"
+        required
+        email
+        #correo="ngModel"
+        [ngClass]="{'is-invalid': correo.invalid && formularioNgForm.submitted}">
+        <div *ngIf="correo.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un correo electrónico válido.
+        </div>       
+        </div>
+
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Ingreso</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+        <label for="cantidadv" class="form-label">Cantidad de Vehículos</label>
+        <input type="number"
+                [(ngModel)]="user.cantidadv"
+                name="cantidadv"
+                placeholder="Digite la cantidad de vehículos"
+                class="form-control"
+                required
+                min="1"
+                #cantidadv="ngModel"
+                [ngClass]="{'is-invalid': cantidadv.invalid && formularioNgForm.submitted}">
+        <div *ngIf="cantidadv.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La cantidad de vehículos es obligatoria, asegurese de ingresarla correctamente.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="porcentaje" class="form-label">Porcentaje de Ganancia (%)</label>
+        <input type="number"
+                [(ngModel)]="user.porcentaje"
+                name="porcentaje"
+                placeholder="Ingrese el porcentaje"
+                class="form-control"
+                required
+                min="0"
+                max="100"
+                step="0.0001"
+                #porcentaje="ngModel"
+                [ngClass]="{'is-invalid': porcentaje.invalid && formularioNgForm.submitted}">
+        <div *ngIf="porcentaje.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El porcentaje es obligatorio, asegurese de ingresarlo correctamente.
+        </div>
+        </div>
+
+        <div class="col-9">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <input type="text" [(ngModel)]="user.observaciones" name="observaciones" placeholder="Observaciones..." class="form-control"
+        #observaciones="ngModel">
+        </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

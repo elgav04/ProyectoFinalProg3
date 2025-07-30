@@ -1,4 +1,4 @@
-<h1>Registro de Empresas</h1>
+<h1>Registro de Warehouses</h1>
 <br>
 
 <div class="container-fluid">
@@ -6,32 +6,21 @@
 
         <div class="col-md-3" hidden>
         <label for="" class="form-label" hidden>No.</label>
-        <input type="text" readonly="readonly" [(ngModel)]="user.cempresa" name="cempresa" class="form-control" placeholder="No." hidden>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cwarehouse" name="cwarehouse" class="form-control" placeholder="No." hidden>
         </div>
 
         <div class="col-md-6">
-        <label for="empresa" class="form-label">Nombre de la Empresa</label>
-        <input type="text" [(ngModel)]="user.empresa" name="empresa" placeholder="Digite el nombre" class="form-control"
+        <label for="warehouse" class="form-label">Nombre Warehouse</label>
+        <input type="text" [(ngModel)]="user.warehouse" name="warehouse" placeholder="Digite el nombre del warehouse" class="form-control"
             required
-           #empresa="ngModel"
-           [ngClass]="{'is-invalid': empresa.invalid && formularioNgForm.submitted}">
-            <div *ngIf="empresa.invalid && formularioNgForm.submitted" class="invalid-feedback">
-            El nombre es obligatorio.
+           #warehouse="ngModel"
+           [ngClass]="{'is-invalid': warehouse.invalid && formularioNgForm.submitted}">
+            <div *ngIf="warehouse.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El nombre del warehouse es obligatorio.
             </div>
         </div>
 
-        <div class="col-md-6">
-        <label for="identificacion" class="form-label">Identificación</label>
-        <input type="text" [(ngModel)]="user.identificacion" name="identificacion" placeholder="Digite la identificación" class="form-control" required
-        minlength="5"
-        #identificacion="ngModel"
-        [ngClass]="{'is-invalid': identificacion.invalid && formularioNgForm.submitted}">
-        <div *ngIf="identificacion.invalid && formularioNgForm.submitted" class="invalid-feedback">
-        La identificación es obligatoria (mínimo 5 caracteres).
-        </div>
-        </div>
-
-        <div class="col-12">
+        <div class="col-6">
         <label for="direccion" class="form-label">Dirección</label>
         <input type="text" [(ngModel)]="user.direccion" name="direccion" placeholder="Digite la dirección" class="form-control"
         required
@@ -54,33 +43,56 @@
         </div>
         </div>
 
-        <div class="col-3">
-        <label for="extension" class="form-label">Extensión</label>
-        <input type="text" [(ngModel)]="user.extension" name="extension" placeholder="Digite el extensión" class="form-control"
-        #extension="ngModel">
+        <div class="col-5">
+        <label for="contacto" class="form-label">Contacto</label>
+        <input type="text" [(ngModel)]="user.contacto" name="contacto" placeholder="Digite el nombre del contacto" class="form-control"
+        required
+        #contacto="ngModel"
+        [ngClass]="{'is-invalid': contacto.invalid && formularioNgForm.submitted}">
+        <div *ngIf="contacto.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El contacto es obligatorio.
+        </div>
         </div>
 
-        <div class="col-3">
-        <label for="correo" class="form-label">Correo</label>
-        <input type="email" [(ngModel)]="user.correo" name="correo" placeholder="Digite el correo" class="form-control"
-        required
-        email
-        #correo="ngModel"
-        [ngClass]="{'is-invalid': correo.invalid && formularioNgForm.submitted}">
-        <div *ngIf="correo.invalid && formularioNgForm.submitted" class="invalid-feedback">
-        Ingrese un correo electrónico válido.
-        </div>       
+        <div class="col-2">
+        <label for="horaapertura" class="form-label">Hora de apertura</label>
+        <input
+            type="time"
+            [(ngModel)]="user.horaapertura"
+            name="horaapertura"
+            placeholder="Seleccione la hora de apertura"
+            class="form-control"
+            required
+            #horaapertura="ngModel"
+            [ngClass]="{'is-invalid': horaapertura.invalid && formularioNgForm.submitted}">
+            
+        <div *ngIf="horaapertura.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La hora de apertura es obligatoria.
+        </div>
         </div>
 
-        <div class="col-3">
-        <label for="fecha" class="form-label">Fecha de Ingreso</label>
-        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
-        required
-        #fecha="ngModel"
-        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
-        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
-        La fecha es obligatoria.
-        </div> 
+        <div class="col-2">
+        <label for="horacierre" class="form-label">Hora de cierre</label>
+        <input
+            type="time"
+            [(ngModel)]="user.horacierre"
+            name="horacierre"
+            placeholder="Seleccione la hora de cierre"
+            class="form-control"
+            required
+            #horacierre="ngModel"
+            [ngClass]="{'is-invalid': horacierre.invalid && formularioNgForm.submitted}">
+            
+        <div *ngIf="horacierre.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La hora de cierre es obligatoria.
+        </div>
+        </div>
+          
+
+        <div class="col-9">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <input type="text" [(ngModel)]="user.observaciones" name="observaciones" placeholder="Observaciones..." class="form-control"
+        #observaciones="ngModel">
         </div>
 
         <!--
@@ -110,7 +122,7 @@
         id="filterPost"
         name="filterPost"
         class="form-control"
-        placeholder="Digite la empresa que desea buscar"
+        placeholder="Digite el warehouse que desea buscar"
         [(ngModel)]="filterPost"
       >
     </div>
@@ -133,32 +145,32 @@
      <thead>
         <tr>
             <th>NO</th>
-            <th>EMPRESA</th>
-            <th>IDENTIFICACIÓN</th>
+            <th>WAREHOUSE</th>
             <th>DIRECCIÓN</th>
-            <th>TELEFONO</th>          
-            <th>EXTENSIÓN</th>
-            <th>CORREO</th>
-            <th>FECHA CREACIÓN</th>
+            <th>TELEFONO</th>
+            <th>CONTACTO</th>          
+            <th>HORA APERTURA</th>
+            <th>HORA CIERRE</th>
+            <th>OBSERVACIONES</th>
             <th>ESTADO</th>
             <th colspan="2">ACCIONES</th>
         </tr>
   
       </thead>
     <tbody >
-                <tr *ngFor="let User of TUser | filterempresa:filterPost">
-                    <td >{{User.cempresa}}</td>
-                    <td >{{User.empresa}}</td>
-                    <td >{{User.identificacion}}</td>
+                <tr *ngFor="let User of TUser | filterwarehouse:filterPost">
+                    <td >{{User.cwarehouse}}</td>
+                    <td >{{User.warehouse}}</td>
                     <td >{{User.direccion}}</td>
                     <td >{{User.telefono}}</td>
-                    <td >{{User.extension}}</td>
-                    <td >{{User.correo}}</td>
-                    <td >{{User.fecha | date:'dd/MM/yyyy'}}</td>
+                    <td >{{User.contacto}}</td>
+                    <td >{{User.horaapertura}}</td>
+                    <td >{{User.horacierre}}</td>
+                    <td >{{User.observaciones}}</td>
                     <td >{{User.estado}}</td>
-                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cempresa)">Eliminar</button> </td>
+                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cwarehouse)">Eliminar</button> </td>
                     <td>
-                        <button  class="btn btn-success" [routerLink]="['/empresas/edit', User.cempresa]">Actualizar</button></td>
+                        <button  class="btn btn-success" [routerLink]="['/warehouses/edit', User.cwarehouse]">Actualizar</button></td>
                   </tr>
        </tbody>
    </table>
