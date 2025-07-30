@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const choferescontroller = require('../controllers/choferes.controller');
+const choferesController = require('../controller/choferescontroller');
 
-router.get('/choferes', choferescontroller.list);
-router.post('/choferes', choferescontroller.save);
-router.delete('/choferes/:cchofere', choferescontroller.delete);
-router.get('/choferes/:cchofere', choferescontroller.edit);
-router.post('/choferes/:cchofere', choferescontroller.update);
+router.get('/', choferesController.list);
+router.post('/', choferesController.save);
+router.delete('/:cchofer', choferesController.delete);
+router.get('/:cchofer', choferesController.edit);
+router.post('/:cchofer', choferesController.update);
 
 module.exports = router;

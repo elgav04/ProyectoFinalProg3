@@ -1,0 +1,217 @@
+<h1>Registro de Choferes</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" (ngSubmit)="AgregarValor()" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cchofer" name="cchofer" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-3">
+        <label for="ctransportista" class="form-label">Transportista</label>
+        <select class="form-control"
+                [(ngModel)]="user.ctransportista"
+                name="ctransportista"
+                required
+                #ctransportista="ngModel"
+                [ngClass]="{'is-invalid': ctransportista.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el transportista</option>
+            <option *ngFor="let lista of TransportistasList" [value]="lista.ctransportista">{{ lista.descripcion }}</option>
+        </select>
+        <div *ngIf="ctransportista.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El transportista es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-md-5">
+        <label for="identificacion" class="form-label">Identificación</label>
+        <input type="text" [(ngModel)]="user.identificacion" name="identificacion" placeholder="Digite la identificación" class="form-control" required
+        minlength="5"
+        #identificacion="ngModel"
+        [ngClass]="{'is-invalid': identificacion.invalid && formularioNgForm.submitted}">
+        <div *ngIf="identificacion.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La identificación es obligatoria (mínimo 5 caracteres).
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="nombres" class="form-label">Nombres:</label>
+        <input type="text" [(ngModel)]="user.nombres" name="nombres" placeholder="Digite los nombres" class="form-control" required
+        minlength="5"
+        #nombres="ngModel"
+        [ngClass]="{'is-invalid': nombres.invalid && formularioNgForm.submitted}">
+        <div *ngIf="nombres.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El nombre es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="apellidos" class="form-label">Apellidos:</label>
+        <input type="text" [(ngModel)]="user.apellidos" name="apellidos" placeholder="Digite los apellidos" class="form-control" required
+        minlength="5"
+        #apellidos="ngModel"
+        [ngClass]="{'is-invalid': apellidos.invalid && formularioNgForm.submitted}">
+        <div *ngIf="apellidos.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El apellido es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-4">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" [(ngModel)]="user.telefono" name="telefono" placeholder="Digite el teléfono" class="form-control"
+        pattern="^[0-9]{8}$|^[0-9]{4}-[0-9]{4}$"
+        required
+        #telefono="ngModel"
+        [ngClass]="{'is-invalid': telefono.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefono.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-4">
+        <label for="permiso" class="form-label">Permiso</label>
+        <input type="text" [(ngModel)]="user.permiso" name="permiso" placeholder="Digite el permiso" class="form-control"
+        required
+        #permiso="ngModel"
+        [ngClass]="{'is-invalid': permiso.invalid && formularioNgForm.submitted}">
+        <div *ngIf="permiso.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El permiso es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-4">
+        <label for="fecha" class="form-label">Fecha de Ingreso</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <!--
+        <div class="col-md-4">
+        <label for="estado" class="form-label"></label>
+        <select id="estado" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+        </div>
+        -->
+        
+        <div class="d-grid col-3 ms-auto">
+            <button type="submit" class="btn btn-primary align-self-end" value="Save">Agregar</button>
+        </div>
+    </form>
+</div>
+
+<br>
+
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-md-8">
+      <label for="filterPost" class="form-label"><b>Búsqueda</b></label>
+      <input
+        type="text"
+        id="filterPost"
+        name="filterPost"
+        class="form-control"
+        placeholder="Digite el nombre o apellido del chofer que desea buscar"
+        [(ngModel)]="filterPost"
+      >
+    </div>
+
+    <div class="col-md-2 d-grid align-items-end">
+      <button (click)="exportToExcel()" class="btn btn-success mt-4">Exportar a Excel</button>
+    </div>
+
+    <div class="col-md-2 d-grid align-items-end">
+      <button class="btn btn-dark mt-4" (click)="openPDF()">Descargar PDF</button>
+    </div>
+  </div>
+</div>
+
+
+ <div class="container-fluid">  
+    <div class="row mt-25">   
+        <div style="overflow-x: auto; width: 100%;">   
+   <table class="table table-striped table-hover" id="tabla">
+    
+     <thead>
+        <tr>
+            <th>NO</th>
+            <th>TRANSPORTISTA</th>
+            <th>IDENTIFICACIÓN</th>
+            <th>NOMBRES</th>
+            <th>APELLIDOS</th>
+            <th>TELEFONO</th>          
+            <th>PERMISO</th>
+            <th>FECHA CREACIÓN</th>
+            <th>ESTADO</th>
+            <th colspan="2">ACCIONES</th>
+        </tr>
+  
+      </thead>
+    <tbody >
+                <tr *ngFor="let User of TUser | filterchofer:filterPost">
+                    <td >{{User.cchofer}}</td>
+                    <td >{{ getTransportistaPorId(User.ctransportista) }}</td>
+                    <td >{{User.identificacion}}</td>
+                    <td >{{User.nombres}}</td>
+                    <td >{{User.apellidos}}</td>
+                    <td >{{User.telefono}}</td>
+                    <td >{{User.permiso}}</td>
+                    <td >{{User.fecha | date:'dd/MM/yyyy'}}</td>
+                    <td >{{User.estado}}</td>
+                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cchofer)">Eliminar</button> </td>
+                    <td>
+                        <button  class="btn btn-success" [routerLink]="['/choferes/edit', User.cchofer]">Actualizar</button></td>
+                  </tr>
+       </tbody>
+   </table>
+   </div>   
+</div>
+</div>
+
+<!-- Modal de éxito -->
+<div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="modalExitoLabel">Registro exitoso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¡El registro se ha guardado correctamente!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de eliminación -->
+<div class="modal fade" id="modalEliminado" tabindex="-1" aria-labelledby="modalEliminadoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalEliminadoLabel">Registro eliminado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          El registro ha sido eliminado correctamente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+

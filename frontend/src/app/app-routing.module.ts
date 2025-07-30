@@ -28,6 +28,12 @@ import { TransportistasEditComponent } from './components/transportistas-edit/tr
 import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { EmpleadosEditComponent } from './components/empleados-edit/empleados-edit.component';
 
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { UsuariosEditComponent } from './components/usuarios-edit/usuarios-edit.component';
+
+import { ChoferesComponent } from './components/choferes/choferes.component';
+import { ChoferesEditComponent } from './components/choferes-edit/choferes-edit.component';
+
 const routes: Routes = [
   {
     path: 'empresas',
@@ -100,6 +106,22 @@ const routes: Routes = [
   {
     path: 'empleados/edit/:id',
     component :EmpleadosEditComponent
+  },
+  {
+    path: 'usuarios',
+    component :UsuariosComponent
+  },
+  {
+    path: 'usuarios/edit/:id',
+    component :UsuariosEditComponent
+  },
+  {
+    path: 'choferes',
+    component :ChoferesComponent
+  },
+  {
+    path: 'choferes/edit/:id',
+    component :ChoferesEditComponent
   }
 
 ];

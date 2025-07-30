@@ -1,0 +1,124 @@
+<h1>Actualizar Registro usuario</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cusuario" name="cusuario" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-3">
+        <label for="ctipousuario" class="form-label">Tipo de Usuario</label>
+        <select class="form-control"
+                [(ngModel)]="user.ctipousuario"
+                name="ctipousuario"
+                required
+                #ctipousuario="ngModel"
+                [ngClass]="{'is-invalid': ctipousuario.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el tipo de usuario</option>
+            <option *ngFor="let lista of TiposuariosList" [value]="lista.ctipousuario">{{ lista.tipousuario }}</option>
+        </select>
+        <div *ngIf="ctipousuario.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El tipo de usuario es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-5">
+        <label for="cempleado" class="form-label">Empleado: </label>
+        <select class="form-control"
+                [(ngModel)]="user.cempleado"
+                name="cempleado"
+                required
+                #cempleado="ngModel"
+                [ngClass]="{'is-invalid': cempleado.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el empleado</option>
+            <option *ngFor="let lista of EmpleadosList" [value]="lista.cempleado">{{ lista.nombres + ' ' + lista.apellidos }}</option>
+        </select>
+        <div *ngIf="cempleado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El empleado asociado es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-md-4">
+        <label for="usuario" class="form-label">Usuario:</label>
+        <input type="text" [(ngModel)]="user.usuario" name="usuario" placeholder="Digite el usuario" class="form-control" required
+        minlength="4"
+        #usuario="ngModel"
+        [ngClass]="{'is-invalid': usuario.invalid && formularioNgForm.submitted}">
+        <div *ngIf="usuario.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El usuario es obligatorio, mayor a 3 caracteres.
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="clave" class="form-label">Clave:</label>
+        <input type="text" [(ngModel)]="user.clave" name="clave" placeholder="Digite la clave" class="form-control" required
+        minlength="4"
+        password
+        #clave="ngModel"
+        [ngClass]="{'is-invalid': clave.invalid && formularioNgForm.submitted}">
+        <div *ngIf="clave.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La clave es obligatoria, mayor a 3 caracteres.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Creación</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

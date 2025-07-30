@@ -62,18 +62,18 @@ INSERT INTO empleados (ctipoemp, identificacion, nombres, apellidos, direccion, 
 (5, '0801198200055', 'Marco', 'Vásquez', 'Col. El Prado, Comayagua', '2777-8899', 'mvasquez@logistica.hn', NOW(), 6.00, 'INACTIVO');
 
 INSERT INTO usuarios (ctipousuario, cempleado, usuario, clave, fecha, estado) VALUES
-(1, 1, 'admin1', 'clave123', DATE(), 'ACTIVO'),
-(2, 2, 'super_ana', 'clave456', DATE(), 'ACTIVO'),
-(3, 3, 'operador_luis', 'clave789', DATE(), 'ACTIVO'),
-(4, 4, 'asistcarla', 'clave321', DATE(), 'ACTIVO'),
-(5, 5, 'invitado_mvasq', 'clave000', DATE(), 'INACTIVO');
+(1, 1, 'admin1', 'clave123', NOW(), 'ACTIVO'),
+(2, 2, 'super_ana', 'clave456', NOW(), 'ACTIVO'),
+(3, 3, 'operador_luis', 'clave789', NOW(), 'ACTIVO'),
+(4, 4, 'asistcarla', 'clave321', NOW(), 'ACTIVO'),
+(5, 5, 'invitado_mvasq', 'clave000', NOW(), 'INACTIVO');
 
 INSERT INTO choferes (ctransportista, identificacion, nombres, apellidos, telefono, permiso, fecha, estado) VALUES
-(1, '0801197700123', 'Pedro', 'Reyes', '2663-7777', 'Lic A', NOW(), 'ACTIVO'),
-(2, '0801198000456', 'Mario', 'Castillo', '2440-1122', 'Lic B', NOW(), 'ACTIVO'),
-(3, '0801199000789', 'Javier', 'Zúniga', '2789-3333', 'Lic C', NOW(), 'ACTIVO'),
-(4, '0801198500345', 'René', 'Cruz', '2780-8899', 'Lic B2', NOW(), 'INACTIVO'),
-(5, '0801198800999', 'Esteban', 'Mejía', '2233-4455', 'Lic A2', NOW(), 'ACTIVO');
+(1, '0801197700123', 'Pedro', 'Reyes', '2663-7777', 'Liv A', NOW(), 'ACTIVO'),
+(2, '0801198000456', 'Mario', 'Castillo', '2440-1122', 'Liv B', NOW(), 'ACTIVO'),
+(3, '0801199000789', 'Javier', 'Zúniga', '2789-3333', 'Liv C', NOW(), 'ACTIVO'),
+(4, '0801198500345', 'René', 'Cruz', '2780-8899', 'Liv B2', NOW(), 'INACTIVO'),
+(5, '0801198800999', 'Esteban', 'Mejía', '2233-4455', 'Liv A2', NOW(), 'ACTIVO');
 
 INSERT INTO cargas (cpais, cbroker, ctransportista, ctipov, cchofer, cempleado, cempresa, warorigen, wardestino,
 origen, destino, distancia, peso, preciocarga, precioprom, fecha, pickup, dropoff, cestcarga, loadnumber,

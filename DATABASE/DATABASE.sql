@@ -92,7 +92,7 @@ CREATE TABLE usuarios (
     cempleado INT,
     usuario VARCHAR(50),
     clave VARCHAR(50),
-    fecha DATE,
+    fecha DATETIME,
     estado VARCHAR(20),
     FOREIGN KEY (ctipousuario) REFERENCES tipousuarios(ctipousuario),
     FOREIGN KEY (cempleado) REFERENCES empleados(cempleado)

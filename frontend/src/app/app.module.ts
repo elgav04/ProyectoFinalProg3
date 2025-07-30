@@ -37,6 +37,12 @@ import { FiltertransportistaPipe } from './pipes/filtertransportista.pipe';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { EmpleadosEditComponent } from './components/empleados-edit/empleados-edit.component';
 import { FilterempleadoPipe } from './pipes/filterempleado.pipe';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { UsuariosEditComponent } from './components/usuarios-edit/usuarios-edit.component';
+import { FilterusuarioPipe } from './pipes/filterusuario.pipe';
+import { ChoferesComponent } from './components/choferes/choferes.component';
+import { ChoferesEditComponent } from './components/choferes-edit/choferes-edit.component';
+import { FilterchoferPipe } from './pipes/filterchofer.pipe';
 
 @NgModule({
   declarations: [
@@ -69,7 +75,13 @@ import { FilterempleadoPipe } from './pipes/filterempleado.pipe';
     FiltertransportistaPipe,
     EmpleadosComponent,
     EmpleadosEditComponent,
-    FilterempleadoPipe
+    FilterempleadoPipe,
+    UsuariosComponent,
+    UsuariosEditComponent,
+    FilterusuarioPipe,
+    ChoferesComponent,
+    ChoferesEditComponent,
+    FilterchoferPipe
   ],
   imports: [
     BrowserModule,

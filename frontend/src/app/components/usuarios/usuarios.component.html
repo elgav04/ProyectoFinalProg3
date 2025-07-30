@@ -1,0 +1,197 @@
+<h1>Registro de Usuarios</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" (ngSubmit)="AgregarValor()" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.cusuario" name="cusuario" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-3">
+        <label for="ctipousuario" class="form-label">Tipo de Usuario</label>
+        <select class="form-control"
+                [(ngModel)]="user.ctipousuario"
+                name="ctipousuario"
+                required
+                #ctipousuario="ngModel"
+                [ngClass]="{'is-invalid': ctipousuario.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el tipo de usuario</option>
+            <option *ngFor="let lista of TiposuariosList" [value]="lista.ctipousuario">{{ lista.tipousuario }}</option>
+        </select>
+        <div *ngIf="ctipousuario.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El tipo de usuario es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-5">
+        <label for="cempleado" class="form-label">Empleado: </label>
+        <select class="form-control"
+                [(ngModel)]="user.cempleado"
+                name="cempleado"
+                required
+                #cempleado="ngModel"
+                [ngClass]="{'is-invalid': cempleado.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el empleado</option>
+            <option *ngFor="let lista of EmpleadosList" [value]="lista.cempleado">{{ lista.nombres + ' ' + lista.apellidos }}</option>
+        </select>
+        <div *ngIf="cempleado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El empleado asociado es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-md-4">
+        <label for="usuario" class="form-label">Usuario:</label>
+        <input type="text" [(ngModel)]="user.usuario" name="usuario" placeholder="Digite el usuario" class="form-control" required
+        minlength="4"
+        #usuario="ngModel"
+        [ngClass]="{'is-invalid': usuario.invalid && formularioNgForm.submitted}">
+        <div *ngIf="usuario.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El usuario es obligatorio, mayor a 3 caracteres.
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <label for="clave" class="form-label">Clave:</label>
+        <input type="text" [(ngModel)]="user.clave" name="clave" placeholder="Digite la clave" class="form-control" required
+        minlength="4"
+        password
+        #clave="ngModel"
+        [ngClass]="{'is-invalid': clave.invalid && formularioNgForm.submitted}">
+        <div *ngIf="clave.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La clave es obligatoria, mayor a 3 caracteres.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Creación</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <!--
+        <div class="col-md-4">
+        <label for="estado" class="form-label"></label>
+        <select id="estado" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+        </div>
+        -->
+        
+        <div class="d-grid col-3 ms-auto">
+            <button type="submit" class="btn btn-primary align-self-end" value="Save">Agregar</button>
+        </div>
+    </form>
+</div>
+
+<br>
+
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-md-8">
+      <label for="filterPost" class="form-label"><b>Búsqueda</b></label>
+      <input
+        type="text"
+        id="filterPost"
+        name="filterPost"
+        class="form-control"
+        placeholder="Digite el usuario que desea buscar"
+        [(ngModel)]="filterPost"
+      >
+    </div>
+
+    <div class="col-md-2 d-grid align-items-end">
+      <button (click)="exportToExcel()" class="btn btn-success mt-4">Exportar a Excel</button>
+    </div>
+
+    <div class="col-md-2 d-grid align-items-end">
+      <button class="btn btn-dark mt-4" (click)="openPDF()">Descargar PDF</button>
+    </div>
+  </div>
+</div>
+
+
+ <div class="container-fluid">  
+    <div class="row mt-25">   
+        <div style="overflow-x: auto; width: 100%;">   
+   <table class="table table-striped table-hover" id="tabla">
+    
+     <thead>
+        <tr>
+            <th>NO</th>
+            <th>TIPO USUARIO</th>
+            <th>EMPLEADO</th>
+            <th>USUARIO</th>
+            <th>CLAVE</th>
+            <th>FECHA CREACIÓN</th>
+            <th>ESTADO</th>
+            <th colspan="2">ACCIONES</th>
+        </tr>
+  
+      </thead>
+    <tbody >
+                <tr *ngFor="let User of TUser | filterusuario:filterPost">
+                    <td >{{User.cusuario}}</td>
+                    <td >{{ getTipousuariosPorId(User.ctipousuario) }}</td>
+                    <td >{{ getEmpleadoPorId(User.cempleado) }}</td>
+                    <td >{{User.usuario}}</td>
+                    <td >{{User.clave}}</td>
+                    <td >{{User.fecha | date:'dd/MM/yyyy'}}</td>
+                    <td >{{User.estado}}</td>
+                    <td><button  class="btn btn-danger"  (click)="EliminarData(User.cusuario)">Eliminar</button> </td>
+                    <td>
+                        <button  class="btn btn-success" [routerLink]="['/usuarios/edit', User.cusuario]">Actualizar</button></td>
+                  </tr>
+       </tbody>
+   </table>
+   </div>   
+</div>
+</div>
+
+<!-- Modal de éxito -->
+<div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="modalExitoLabel">Registro exitoso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¡El registro se ha guardado correctamente!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de eliminación -->
+<div class="modal fade" id="modalEliminado" tabindex="-1" aria-labelledby="modalEliminadoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalEliminadoLabel">Registro eliminado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          El registro ha sido eliminado correctamente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
