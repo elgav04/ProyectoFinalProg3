@@ -78,4 +78,28 @@ export class DataService {
     return this.http.get<any>(this.API_URI+'/transportistas')
     }
 
+  getDropListPaises():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/paises')
+    }
+
+  getDropListBrokers():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/brokers')
+    }
+
+  getDropListTipovehiculos():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/tipovehiculos')
+    }
+
+  getDropListChoferes():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/choferes')
+    }
+
+  getDropListEmpresas():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/empresas')
+    }
+
+  getDropListWarehouses():Observable<any[]>{
+    return this.http.get<any>(this.API_URI+'/warehouses')
+    }
+
 }

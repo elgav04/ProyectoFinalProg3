@@ -43,6 +43,9 @@ import { FilterusuarioPipe } from './pipes/filterusuario.pipe';
 import { ChoferesComponent } from './components/choferes/choferes.component';
 import { ChoferesEditComponent } from './components/choferes-edit/choferes-edit.component';
 import { FilterchoferPipe } from './pipes/filterchofer.pipe';
+import { CargasComponent } from './components/cargas/cargas.component';
+import { CargasEditComponent } from './components/cargas-edit/cargas-edit.component';
+import { FiltercargaPipe } from './pipes/filtercarga.pipe';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import { FilterchoferPipe } from './pipes/filterchofer.pipe';
     FilterusuarioPipe,
     ChoferesComponent,
     ChoferesEditComponent,
-    FilterchoferPipe
+    FilterchoferPipe,
+    CargasComponent,
+    CargasEditComponent,
+    FiltercargaPipe
   ],
   imports: [
     BrowserModule,

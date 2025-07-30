@@ -15,7 +15,7 @@ declare var bootstrap: any;
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent  implements OnInit {
+export class UsuariosComponent implements OnInit {
   TUser: any = [];
   user: usuarios = {
     cusuario: null,

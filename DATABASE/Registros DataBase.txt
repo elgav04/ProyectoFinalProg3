@@ -75,11 +75,23 @@ INSERT INTO choferes (ctransportista, identificacion, nombres, apellidos, telefo
 (4, '0801198500345', 'René', 'Cruz', '2780-8899', 'Liv B2', NOW(), 'INACTIVO'),
 (5, '0801198800999', 'Esteban', 'Mejía', '2233-4455', 'Liv A2', NOW(), 'ACTIVO');
 
-INSERT INTO cargas (cpais, cbroker, ctransportista, ctipov, cchofer, cempleado, cempresa, warorigen, wardestino,
-origen, destino, distancia, peso, preciocarga, precioprom, fecha, pickup, dropoff, cestcarga, loadnumber,
-contactobrok, telefonobrok, estado) VALUES
-(1, 1, 1, 1, 1, 1, 1, 1, 2, 'San Pedro Sula', 'Tegucigalpa', 240, '5000kg', 15000, 0.0625, NOW(), NOW(), NOW(), 'En tránsito', 'LD001', 'Carlos Pineda', '9876-1234', 'ACTIVO'),
-(1, 2, 2, 2, 2, 2, 2, 2, 3, 'La Ceiba', 'Puerto Cortés', 120, '3000kg', 10000, 0.0833, NOW(), NOW(), NOW(), 'Asignado', 'LD002', 'Sandra Reyes', '9988-7766', 'ACTIVO'),
-(1, 3, 3, 3, 3, 3, 3, 3, 4, 'Choluteca', 'Comayagua', 200, '4000kg', 12000, 0.0600, NOW(), NOW(), NOW(), 'Finalizado', 'LD003', 'Oscar López', '9988-1122', 'ACTIVO'),
-(1, 4, 4, 4, 4, 4, 4, 5, 1, 'Tegucigalpa', 'El Progreso', 220, '3500kg', 11000, 0.0687, NOW(), NOW(), NOW(), 'Cancelado', 'LD004', 'Andrea Gómez', '9543-2233', 'INACTIVO'),
-(1, 5, 5, 5, 5, 5, 5, 1, 2, 'San Pedro Sula', 'La Ceiba', 180, '2800kg', 10500, 0.0583, NOW(), NOW(), NOW(), 'En espera', 'LD005', 'Luis Mendoza', '9456-3321', 'ACTIVO');
+INSERT INTO cargas (
+  cpais, cbroker, ctransportista, ctipov, cchofer, cempleado, cempresa, 
+  warorigen, wardestino, origen, destino, distancia, peso, 
+  preciocarga, precioprom, fecha, pickup, dropoff, 
+  cestcarga, loadnumber, contactobrok, telefonobrok, estado
+) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 2, 'San Pedro Sula', 'Tegucigalpa', 240, 5000.00, 15000, 3.00, 
+ '2025-07-15', '2025-07-18 08:00:00', '2025-07-21 16:00:00', 'En tránsito', 'LD001', 'Carlos Pineda', '9876-1234', 'ACTIVO'),
+
+(1, 2, 2, 2, 2, 2, 2, 2, 3, 'La Ceiba', 'Puerto Cortés', 120, 3000.00, 10000, 3.33, 
+ '2025-07-10', '2025-07-14 09:00:00', '2025-07-15 13:30:00', 'Asignado', 'LD002', 'Sandra Reyes', '9988-7766', 'ACTIVO'),
+
+(1, 3, 3, 3, 3, 3, 3, 3, 4, 'Choluteca', 'Comayagua', 200, 4000.00, 12000, 3.00, 
+ '2025-07-01', '2025-07-05 07:30:00', '2025-07-08 15:45:00', 'Finalizado', 'LD003', 'Oscar López', '9988-1122', 'ACTIVO'),
+
+(1, 4, 4, 4, 4, 4, 4, 5, 1, 'Tegucigalpa', 'El Progreso', 220, 3500.00, 11000, 3.14, 
+ '2025-06-28', '2025-07-02 10:00:00', '2025-07-03 14:15:00', 'Cancelado', 'LD004', 'Andrea Gómez', '9543-2233', 'INACTIVO'),
+
+(1, 5, 5, 5, 5, 5, 5, 1, 2, 'San Pedro Sula', 'La Ceiba', 180, 2800.00, 10500, 3.75, 
+ '2025-07-20', '2025-07-25 06:45:00', '2025-07-26 12:00:00', 'En espera', 'LD005', 'Luis Mendoza', '9456-3321', 'ACTIVO');

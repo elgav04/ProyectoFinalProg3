@@ -37,7 +37,7 @@ const transportistasRoutes = require('./rutas/transportistas');
 const empleadosRoutes = require('./rutas/empleados');
 const usuariosRoutes = require('./rutas/usuarios');
 const choferesRoutes = require('./rutas/choferes');
-//const cargasRoutes = require('./rutas/cargas');
+const cargasRoutes = require('./rutas/cargas');
 
 
 
@@ -82,7 +82,8 @@ app.use('/api/transportistas', transportistasRoutes);
 app.use('/api/empleados', empleadosRoutes);
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/choferes', choferesRoutes);
-//app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/cargas', cargasRoutes);
 
 
 // archivos estaticos frontend

@@ -1,0 +1,395 @@
+<h1>Actualizar Registro de Carga</h1>
+<br>
+
+<div class="container-fluid">
+    <form id="formulario" name="formulario" class="row g-3" #formularioNgForm="ngForm" novalidate>
+
+        <div class="col-md-3" hidden>
+        <label for="" class="form-label" hidden>No.</label>
+        <input type="text" readonly="readonly" [(ngModel)]="user.ccarga" name="ccarga" class="form-control" placeholder="No." hidden>
+        </div>
+
+        <div class="col-3">
+        <label for="cpais" class="form-label">País</label>
+        <select class="form-control"
+                [(ngModel)]="user.cpais"
+                name="cpais"
+                required
+                #cpais="ngModel"
+                [ngClass]="{'is-invalid': cpais.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el país</option>
+            <option *ngFor="let lista of PaisesList" [value]="lista.cpais">{{ lista.pais }}</option>
+        </select>
+        <div *ngIf="cpais.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El país es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="cbroker" class="form-label">Broker</label>
+        <select class="form-control"
+                [(ngModel)]="user.cbroker"
+                name="cbroker"
+                required
+                #cbroker="ngModel"
+                [ngClass]="{'is-invalid': cbroker.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el broker</option>
+            <option *ngFor="let lista of BrokersList" [value]="lista.cbroker">{{ lista.broker }}</option>
+        </select>
+        <div *ngIf="cbroker.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El broker es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="ctransportista" class="form-label">Transportista</label>
+        <select class="form-control"
+                [(ngModel)]="user.ctransportista"
+                name="ctransportista"
+                required
+                #ctransportista="ngModel"
+                [ngClass]="{'is-invalid': ctransportista.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el transportista</option>
+            <option *ngFor="let lista of TransportistasList" [value]="lista.ctransportista">{{ lista.descripcion }}</option>
+        </select>
+        <div *ngIf="ctransportista.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El transportista es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="ctipov" class="form-label">Tipo de Vehículo</label>
+        <select class="form-control"
+                [(ngModel)]="user.ctipov"
+                name="ctipov"
+                required
+                #ctipov="ngModel"
+                [ngClass]="{'is-invalid': ctipov.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el tipo de vehículo</option>
+            <option *ngFor="let lista of TipovehiculosList" [value]="lista.ctipov">{{ lista.tipo }}</option>
+        </select>
+        <div *ngIf="ctipov.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El tipo de vehículo es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="cchofer" class="form-label">Chofer</label>
+        <select class="form-control"
+                [(ngModel)]="user.cchofer"
+                name="cchofer"
+                required
+                #cchofer="ngModel"
+                [ngClass]="{'is-invalid': cchofer.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el Chofer</option>
+            <option *ngFor="let lista of ChoferesList" [value]="lista.cchofer">{{ lista.nombres + ' ' + lista.apellidos }}</option>
+        </select>
+        <div *ngIf="cchofer.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El chofer es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-4">
+        <label for="cempleado" class="form-label">Empleado Responsable: </label>
+        <select class="form-control"
+                [(ngModel)]="user.cempleado"
+                name="cempleado"
+                required
+                #cempleado="ngModel"
+                [ngClass]="{'is-invalid': cempleado.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el empleado</option>
+            <option *ngFor="let lista of EmpleadosList" [value]="lista.cempleado">{{ lista.nombres + ' ' + lista.apellidos }}</option>
+        </select>
+        <div *ngIf="cempleado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El empleado asociado es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-5">
+        <label for="cempresa" class="form-label">Empresa</label>
+        <select class="form-control"
+                [(ngModel)]="user.cempresa"
+                name="cempresa"
+                required
+                #cempresa="ngModel"
+                [ngClass]="{'is-invalid': cempresa.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione la empresa</option>
+            <option *ngFor="let lista of EmpresasList" [value]="lista.cempresa">{{ lista.empresa }}</option>
+        </select>
+        <div *ngIf="cempresa.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La empresa es obligatoria.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="warorigen" class="form-label">Warehouse Origen</label>
+        <select class="form-control"
+                [(ngModel)]="user.warorigen"
+                name="warorigen"
+                required
+                #warorigen="ngModel"
+                [ngClass]="{'is-invalid': warorigen.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el warehouse</option>
+            <option *ngFor="let lista of WarehousesList" [value]="lista.cwarehouse">{{ lista.warehouse }}</option>
+        </select>
+        <div *ngIf="warorigen.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El WH de origen es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="wardestino" class="form-label">Warehouse Destino</label>
+        <select class="form-control"
+                [(ngModel)]="user.wardestino"
+                name="wardestino"
+                required
+                #wardestino="ngModel"
+                [ngClass]="{'is-invalid': wardestino.invalid && formularioNgForm.submitted}">
+            
+            <option value="" disabled selected>Seleccione el warehouse</option>
+            <option *ngFor="let lista of WarehousesList" [value]="lista.cwarehouse">{{ lista.warehouse }}</option>
+        </select>
+        <div *ngIf="wardestino.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El WH de destino es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="origen" class="form-label">Ciudad de Origen</label>
+        <input type="text" [(ngModel)]="user.origen" name="origen" placeholder="Digite el origen" class="form-control"
+        required
+        #origen="ngModel"
+        [ngClass]="{'is-invalid': origen.invalid && formularioNgForm.submitted}">
+        <div *ngIf="origen.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El origen es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="destino" class="form-label">Ciudad de Destino</label>
+        <input type="text" [(ngModel)]="user.destino" name="destino" placeholder="Digite el destino" class="form-control"
+        required
+        #destino="ngModel"
+        [ngClass]="{'is-invalid': destino.invalid && formularioNgForm.submitted}">
+        <div *ngIf="destino.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El destino es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="distancia" class="form-label">Distancia (km)</label>
+        <input type="number"
+                [(ngModel)]="user.distancia"
+                name="distancia"
+                placeholder="Digite la distancia en kilómetros"
+                class="form-control"
+                required
+                min="1"
+                step="1"
+                #distancia="ngModel"
+                [ngClass]="{'is-invalid': distancia.invalid && formularioNgForm.submitted}">
+        <div *ngIf="distancia.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            La distancia es obligatoria, mayor que 0.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="peso" class="form-label">Peso (kg)</label>
+        <input type="number"
+                [(ngModel)]="user.peso"
+                (ngModelChange)="actualizarPrecioPromedio()"
+                name="peso"
+                placeholder="Digite el peso en kilogramos"
+                class="form-control"
+                required
+                min="0.01"
+                step="0.01"
+                #peso="ngModel"
+                [ngClass]="{'is-invalid': peso.invalid && formularioNgForm.submitted}">
+        <div *ngIf="peso.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El peso es obligatorio, puede contener hasta dos decimales.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="preciocarga" class="form-label">Precio de la Carga</label>
+        <input type="number"
+                [(ngModel)]="user.preciocarga"
+                (ngModelChange)="actualizarPrecioPromedio()"
+                name="preciocarga"
+                placeholder="Digite el precio de la carga"
+                class="form-control"
+                required
+                min="0.01"
+                step="0.01"
+                #preciocarga="ngModel"
+                [ngClass]="{'is-invalid': preciocarga.invalid && formularioNgForm.submitted}">
+        <div *ngIf="preciocarga.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El precio de la carga es obligatorio, puede contener hasta dos decimales.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="precioprom" class="form-label">Precio Promedio (Precio / Peso)</label>
+        <input type="number"
+                [(ngModel)]="user.precioprom"
+                name="precioprom"
+                placeholder="0.00"
+                class="form-control bg-light text-muted"
+                readonly
+                required
+                min="0.01"
+                step="0.01"
+                #precioprom="ngModel"
+                [ngClass]="{'is-invalid': precioprom.invalid && formularioNgForm.submitted}">
+        <div *ngIf="precioprom.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El precio promedio es obligatorio, se calcula automáticamente.
+        </div>
+        </div>
+            
+        <div class="col-3">
+        <label for="fecha" class="form-label">Fecha de Creación</label>
+        <input type="date" [(ngModel)]="user.fecha" name="fecha" class="form-control"
+        required
+        #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid && formularioNgForm.submitted}">
+        <div *ngIf="fecha.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+        <label for="pickup" class="form-label">Pickup</label>
+        <input type="date" [(ngModel)]="user.pickup" name="pickup" class="form-control"
+        required
+        #pickup="ngModel"
+        [ngClass]="{'is-invalid': pickup.invalid && formularioNgForm.submitted}">
+        <div *ngIf="pickup.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha de pickup es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+        <label for="dropoff" class="form-label">Dropoff</label>
+        <input type="date" [(ngModel)]="user.dropoff" name="dropoff" class="form-control"
+        required
+        #dropoff="ngModel"
+        [ngClass]="{'is-invalid': dropoff.invalid && formularioNgForm.submitted}">
+        <div *ngIf="dropoff.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        La fecha de dropoff es obligatoria.
+        </div> 
+        </div>
+
+        <div class="col-3">
+        <label for="cestcarga" class="form-label">Estado de la Carga</label>
+        <select [(ngModel)]="user.cestcarga"
+                name="cestcarga"
+                class="form-control"
+                required
+                #cestcarga="ngModel"
+                [ngClass]="{'is-invalid': cestcarga.invalid && formularioNgForm.submitted}">
+            <option value="" disabled selected>Seleccione el estado de la carga</option>
+            <option value="En tránsito">En tránsito</option>
+            <option value="Asignado">Asignado</option>
+            <option value="Finalizado">Finalizado</option>
+            <option value="Cancelado">Cancelado</option>
+            <option value="En espera">En espera</option>
+        </select>
+        <div *ngIf="cestcarga.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El estado de la carga es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="loadnumber" class="form-label">Número de Carga</label>
+        <input type="text"
+                [(ngModel)]="user.loadnumber"
+                name="loadnumber"
+                placeholder="Digite el número de referencia"
+                class="form-control"
+                required
+                maxlength="20"
+                #loadnumber="ngModel"
+                [ngClass]="{'is-invalid': loadnumber.invalid && formularioNgForm.submitted}">
+        <div *ngIf="loadnumber.invalid && formularioNgForm.submitted" class="invalid-feedback">
+            El número de carga es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-6">
+        <label for="contactobrok" class="form-label">Contacto Broker</label>
+        <input type="text" [(ngModel)]="user.contactobrok" name="contactobrok" placeholder="contacto broker" class="form-control"
+        required
+        #contactobrok="ngModel"
+        [ngClass]="{'is-invalid': contactobrok.invalid && formularioNgForm.submitted}">
+        <div *ngIf="contactobrok.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        El contacto es obligatorio.
+        </div>
+        </div>
+
+        <div class="col-3">
+        <label for="telefonobrok" class="form-label">Teléfono Broker</label>
+        <input type="text" [(ngModel)]="user.telefonobrok" name="telefonobrok" placeholder="teléfono broker" class="form-control"
+        pattern="^[0-9]{8}$|^[0-9]{4}-[0-9]{4}$"
+        required
+        #telefonobrok="ngModel"
+        [ngClass]="{'is-invalid': telefonobrok.invalid && formularioNgForm.submitted}">
+        <div *ngIf="telefonobrok.invalid && formularioNgForm.submitted" class="invalid-feedback">
+        Ingrese un número válido de 8 dígitos.
+        </div>
+        </div>
+
+        <div class="col-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              id="estado"
+              [(ngModel)]="user.estado"
+              name="estado"
+              class="form-select"
+              required
+              #estado="ngModel"
+              [ngClass]="{'is-invalid': estado.invalid && formularioNgForm.submitted}"
+            >
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+            </select>
+            <div *ngIf="estado.invalid && formularioNgForm.submitted" class="invalid-feedback">
+              El estado es obligatorio.
+            </div>
+        </div>
+        
+        <div class="col-3 ms-auto d-grid align-self-end">
+            <button type="submit" class="btn btn-warning w-100" (click)="updateUser()" >Actualizar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modalActualizado" tabindex="-1" aria-labelledby="modalActualizadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="modalActualizadoLabel">Actualización realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        Los datos se han actualizado correctamente.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning text-dark" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

@@ -34,6 +34,9 @@ import { UsuariosEditComponent } from './components/usuarios-edit/usuarios-edit.
 import { ChoferesComponent } from './components/choferes/choferes.component';
 import { ChoferesEditComponent } from './components/choferes-edit/choferes-edit.component';
 
+import { CargasComponent } from './components/cargas/cargas.component';
+import { CargasEditComponent } from './components/cargas-edit/cargas-edit.component';
+
 const routes: Routes = [
   {
     path: 'empresas',
@@ -122,6 +125,14 @@ const routes: Routes = [
   {
     path: 'choferes/edit/:id',
     component :ChoferesEditComponent
+  },
+  {
+    path: 'cargas',
+    component :CargasComponent
+  },
+  {
+    path: 'cargas/edit/:id',
+    component :CargasEditComponent
   }
 
 ];
