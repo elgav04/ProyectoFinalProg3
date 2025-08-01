@@ -1,9 +1,8 @@
 INSERT INTO tipousuarios (tipousuario, estado) VALUES
-('Administrador', 'ACTIVO'),
-('Supervisor', 'ACTIVO'),
-('Operador', 'ACTIVO'),
-('Contador', 'ACTIVO'),
-('Invitado', 'INACTIVO');
+('ADMINISTRADOR', 'ACTIVO'),
+('SUPERVISOR', 'ACTIVO'),
+('DESPACHADOR', 'ACTIVO'),
+('ASISTENTE OPERATIVO', 'ACTIVO');
 
 INSERT INTO tipoempleado (tipoemp, estado) VALUES
 ('Gerente Logístico', 'ACTIVO'),
@@ -63,10 +62,10 @@ INSERT INTO empleados (ctipoemp, identificacion, nombres, apellidos, direccion, 
 
 INSERT INTO usuarios (ctipousuario, cempleado, usuario, clave, fecha, estado) VALUES
 (1, 1, 'admin1', 'clave123', NOW(), 'ACTIVO'),
-(2, 2, 'super_ana', 'clave456', NOW(), 'ACTIVO'),
-(3, 3, 'operador_luis', 'clave789', NOW(), 'ACTIVO'),
-(4, 4, 'asistcarla', 'clave321', NOW(), 'ACTIVO'),
-(5, 5, 'invitado_mvasq', 'clave000', NOW(), 'INACTIVO');
+(2, 2, 'sup_juan', 'clave456', NOW(), 'ACTIVO'),
+(3, 3, 'despach_luis', 'clave789', NOW(), 'ACTIVO'),
+(4, 4, 'asist_carla', 'clave321', NOW(), 'ACTIVO'),
+(4, 5, 'asist_kenia', 'clave000', NOW(), 'ACTIVO');
 
 INSERT INTO choferes (ctransportista, identificacion, nombres, apellidos, telefono, permiso, fecha, estado) VALUES
 (1, '0801197700123', 'Pedro', 'Reyes', '2663-7777', 'Liv A', NOW(), 'ACTIVO'),

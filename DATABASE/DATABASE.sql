@@ -90,8 +90,8 @@ CREATE TABLE usuarios (
     cusuario  INT AUTO_INCREMENT PRIMARY KEY,
     ctipousuario INT,
     cempleado INT,
-    usuario VARCHAR(50),
-    clave VARCHAR(50),
+    usuario VARCHAR(50) not null,
+    clave VARCHAR(50) not null,
     fecha DATETIME,
     estado VARCHAR(20),
     FOREIGN KEY (ctipousuario) REFERENCES tipousuarios(ctipousuario),
@@ -144,3 +144,25 @@ CREATE TABLE cargas (
     FOREIGN KEY (warorigen) REFERENCES warehouses(cwarehouse),
     FOREIGN KEY (wardestino) REFERENCES warehouses(cwarehouse)
 );
+
+
+
+/* agreguen columna a la tabla usuarios para la funcionalidad del login */
+ALTER TABLE usuarios ADD COLUMN logged_in TINYINT DEFAULT 0;
+
+/* 
+
+delen truncate a las tablas usuarios y tipousuarios con:
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE logistica.tipousuarios;
+TRUNCATE TABLE logistica.usuarios;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+luego vuelvan a agregar los registros que estan arriba de
+tipousuarios
+usuarios
+
+*/

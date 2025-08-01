@@ -47,6 +47,8 @@ import { CargasComponent } from './components/cargas/cargas.component';
 import { CargasEditComponent } from './components/cargas-edit/cargas-edit.component';
 import { FiltercargaPipe } from './pipes/filtercarga.pipe';
 import { HomeComponent } from './components/home/home.component';
+import { NoAutorizadoComponent } from './components/no-autorizado/no-autorizado.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { HomeComponent } from './components/home/home.component';
     CargasComponent,
     CargasEditComponent,
     FiltercargaPipe,
-    HomeComponent
+    HomeComponent,
+    NoAutorizadoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +9,22 @@ import { AfterViewInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  onLogout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Error al cerrar sesión', err);
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
+
   @ViewChild('sidebar') sidebar!: ElementRef;
   @ViewChild('toggleButton') toggleButton!: ElementRef;
 

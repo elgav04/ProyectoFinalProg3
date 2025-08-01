@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './auth.guard';
+
+import { LoginComponent } from './components/login/login.component';
+import { NoAutorizadoComponent } from './components/no-autorizado/no-autorizado.component';
 import { HomeComponent } from './components/home/home.component';
+
 
 import { EmpresasComponent} from './components/empresas/empresas.component';
 import { EmpresasEditComponent} from './components/empresas-edit/empresas-edit.component';
@@ -41,104 +46,136 @@ import { CargasEditComponent } from './components/cargas-edit/cargas-edit.compon
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component :HomeComponent
   },
   {
+    path: 'login',
+    component :LoginComponent
+  },
+  {
+    path: 'no-autorizado',
+    component :NoAutorizadoComponent
+  },
+  {
     path: 'empresas',
-    component :EmpresasComponent
+    component :EmpresasComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'empresas/edit/:id',
-    component :EmpresasEditComponent
+    component :EmpresasEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'tipousuarios',
-    component :TipousuariosComponent
+    component :TipousuariosComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
   },
   {
     path: 'tipousuarios/edit/:id',
-    component :TipousuariosEditComponent
+    component :TipousuariosEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
   },
   {
     path: 'tipoempleado',
-    component :TipoempleadoComponent
+    component :TipoempleadoComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
   },
   {
     path: 'tipoempleado/edit/:id',
-    component :TipoempleadoEditComponent
+    component :TipoempleadoEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
   },
   {
     path: 'tipovehiculos',
-    component :TipovehiculosComponent
+    component :TipovehiculosComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
   },
   {
     path: 'tipovehiculos/edit/:id',
-    component :TipovehiculosEditComponent
+    component :TipovehiculosEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
   },
   {
     path: 'paises',
-    component :PaisesComponent
+    component :PaisesComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
   },
   {
     path: 'paises/edit/:id',
-    component :PaisesEditComponent
+    component :PaisesEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
   },
   {
     path: 'brokers',
-    component :BrokersComponent
+    component :BrokersComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'brokers/edit/:id',
-    component :BrokersEditComponent
+    component :BrokersEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'warehouses',
-    component :WarehousesComponent
+    component :WarehousesComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'warehouses/edit/:id',
-    component :WarehousesEditComponent
+    component :WarehousesEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'transportistas',
-    component :TransportistasComponent
+    component :TransportistasComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'transportistas/edit/:id',
-    component :TransportistasEditComponent
+    component :TransportistasEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'empleados',
-    component :EmpleadosComponent
+    component :EmpleadosComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
   },
   {
     path: 'empleados/edit/:id',
-    component :EmpleadosEditComponent
+    component :EmpleadosEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
   },
   {
     path: 'usuarios',
-    component :UsuariosComponent
+    component :UsuariosComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
   },
   {
     path: 'usuarios/edit/:id',
-    component :UsuariosEditComponent
+    component :UsuariosEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
   },
   {
     path: 'choferes',
-    component :ChoferesComponent
+    component :ChoferesComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'choferes/edit/:id',
-    component :ChoferesEditComponent
+    component :ChoferesEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'cargas',
-    component :CargasComponent
+    component :CargasComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR','DESPACHADOR', 'ASISTENTE OPERATIVO'] }
   },
   {
     path: 'cargas/edit/:id',
-    component :CargasEditComponent
+    component :CargasEditComponent,
+    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR','DESPACHADOR', 'ASISTENTE OPERATIVO'] }
   }
 
 ];
