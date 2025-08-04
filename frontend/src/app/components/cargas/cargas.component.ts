@@ -7,6 +7,8 @@ import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+import { DatePipe } from '@angular/common';
+import { saveAs } from 'file-saver';
 
 declare var bootstrap: any;
 
@@ -14,7 +16,8 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-cargas',
   templateUrl: './cargas.component.html',
-  styleUrls: ['./cargas.component.css']
+  styleUrls: ['./cargas.component.css'],
+  providers: [DatePipe]
 })
 export class CargasComponent implements OnInit {
   TUser: any = [];
@@ -67,7 +70,7 @@ export class CargasComponent implements OnInit {
 
   @ViewChild('formularioNgForm') formularioNgForm!: NgForm;
 
-  constructor(private Data: DataService) { }
+  constructor(private Data: DataService, private datePipe:DatePipe) { }
 
   ngOnInit(): void {
 
@@ -310,4 +313,91 @@ exportToExcel(): void {
       PDF.save('cargas.pdf');
     });
   }
+
+  imprimirPDF() {
+      
+        const doc = new jsPDF('landscape');
+        doc.setFontSize(22);
+        doc.text('Listado de Cargas Registradas', 90, 15, { align: 'center' });
+        doc.setFontSize(16);
+        doc.text(`Fecha de impresión: ${this.datePipe.transform(new Date(), 'dd/MM/yyyy')}`, 90, 25, { align: 'center' });
+      
+        const tableData = this.TUser.map((cargas: cargas) => [
+          cargas.ccarga?.toString() || 'N/A',  
+          this.getPaisesPorId(cargas.cpais!) || 'N/A',
+          this.getBrokersPorId(cargas.cbroker!) || 'N/A',
+          this.getTransportistaPorId(cargas.ctransportista!) || 'N/A',
+          this.getTipovehiculosPorId(cargas.ctipov!) || 'N/A',
+          this.getChoferesPorId(cargas.cchofer!) || 'N/A',
+          this.getEmpleadoPorId(cargas.cempleado!) || 'N/A',
+          this.getEmpresasPorId(cargas.cempresa!) || 'N/A',
+          this.getWarehousesPorId(cargas.warorigen!) || 'N/A',
+          this.getWarehousesPorId(cargas.wardestino!) || 'N/A',
+          cargas.origen || 'N/A',
+          cargas.destino || 'N/A',
+          cargas.distancia || 'N/A',
+          cargas.peso || 'N/A',
+          cargas.preciocarga || 'N/A',
+          cargas.precioprom || 'N/A',
+          cargas.fecha || 'N/A',
+          cargas.pickup || 'N/A',
+          cargas.dropoff || 'N/A',
+          cargas.cestcarga || 'N/A',
+          cargas.loadnumber || 'N/A',
+          cargas.contactobrok || 'N/A',
+          cargas.telefonobrok || 'N/A',
+          cargas.estado || 'N/A'
+        ]);
+        
+        
+        import('jspdf-autotable').then((autoTable) => {
+          
+          autoTable.default(doc, {
+            
+            head: [['ID', 'PAIS','BROKER','TRANSPORTISTA','TIPO VEHÍCULO','CHOFER','RESPONSABLE','EMPRESA','WH ORIGEN','WH DESTINO','ORIGEN','DESTINO','DISTANCIA','PESO','PRECIO CARGA','PRECIO PROM','FECHA','PICKUP','DROPOFF','ESTADO CARGA','LOAD N','CONTACTO BK','TELÉFONO BK','ESTADO']],
+            body: tableData,
+            startY: 35,
+            pageBreak: 'auto',
+            margin: { left: 10 },
+            styles: {
+              fontSize: 8,
+              cellPadding: 3,
+              lineWidth: 0.5,
+              lineColor: [0, 0, 0],
+              overflow: 'ellipsize'
+            },
+            headStyles: {
+              fillColor: [41, 128, 185],
+              textColor: 255,
+              fontStyle: 'bold'
+            },
+            alternateRowStyles: {
+              fillColor: [245, 245, 245]
+            },
+            columnStyles: {
+              0: { cellWidth: 10 },
+              1: { cellWidth: 45 },
+              2: { cellWidth: 45 },
+              3: { cellWidth: 30 },
+              4: { cellWidth: 45 },
+              5: { cellWidth: 35 },
+              6: { cellWidth: 23 },
+            
+              7: { cellWidth: 30 },
+             
+            },
+            
+            didDrawPage: (data) => {
+              doc.setFontSize(10);
+             
+            }
+          
+          
+          });
+          
+      
+          doc.save('listado-cargas.pdf');
+          alert('Se ha generado el PDF');  
+        });
+      }
 }

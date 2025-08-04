@@ -58,6 +58,11 @@ const routes: Routes = [
     component :NoAutorizadoComponent
   },
   {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
     path: 'empresas',
     component :EmpresasComponent,
     canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
@@ -176,8 +181,13 @@ const routes: Routes = [
     path: 'cargas/edit/:id',
     component :CargasEditComponent,
     canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR','DESPACHADOR', 'ASISTENTE OPERATIVO'] }
-  }
-
+  },
+  
+  // Ruta para manejar rutas no definidas
+  {
+    path: '**',
+    redirectTo: '/login'
+  },
 ];
 
 @NgModule({

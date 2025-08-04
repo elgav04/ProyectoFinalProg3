@@ -7,13 +7,17 @@ import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+import { DatePipe } from '@angular/common';
+import { saveAs } from 'file-saver';
+
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  styleUrls: ['./usuarios.component.css'],
+  providers: [DatePipe]
 })
 export class UsuariosComponent implements OnInit {
   TUser: any = [];
@@ -36,7 +40,7 @@ export class UsuariosComponent implements OnInit {
 
   @ViewChild('formularioNgForm') formularioNgForm!: NgForm;
 
-  constructor(private Data: DataService) { }
+  constructor(private Data: DataService, private datePipe:DatePipe) { }
 
   ngOnInit(): void {
     this.cargarTipousuarios();
@@ -142,6 +146,77 @@ export class UsuariosComponent implements OnInit {
       let position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
       PDF.save('usuarios.pdf');
+    });
+  }
+
+  imprimirPDF() {
+      
+    const doc = new jsPDF('landscape');
+    doc.setFontSize(22);
+    doc.text('Listado de Usuarios Registrados', 90, 15, { align: 'center' });
+    doc.setFontSize(16);
+    doc.text(`Fecha de impresión: ${this.datePipe.transform(new Date(), 'dd/MM/yyyy')}`, 90, 25, { align: 'center' });
+
+    const tableData = this.TUser.map((usuarios: usuarios) => [
+      usuarios.cusuario?.toString() || 'N/A',  
+      this.getTipousuariosPorId(usuarios.ctipousuario!) || 'N/A',
+      this.getEmpleadoPorId(usuarios.cempleado!) || 'N/A',
+      usuarios.usuario || 'N/A',
+      usuarios.clave || 'N/A',
+      usuarios.fecha || 'N/A',
+      usuarios.estado || 'N/A'
+
+    ]);
+    
+    
+    import('jspdf-autotable').then((autoTable) => {
+      
+      autoTable.default(doc, {
+        
+        head: [['ID', 'TIPO DE USUARIO','EMPLEADO','USUARIO','CLAVE','FECHA','ESTADO']],
+        body: tableData,
+        startY: 35,
+        pageBreak: 'auto',
+        margin: { left: 10 },
+        styles: {
+          fontSize: 8,
+          cellPadding: 3,
+          lineWidth: 0.5,
+          lineColor: [0, 0, 0],
+          overflow: 'ellipsize'
+        },
+        headStyles: {
+          fillColor: [41, 128, 185],
+          textColor: 255,
+          fontStyle: 'bold'
+        },
+        alternateRowStyles: {
+          fillColor: [245, 245, 245]
+        },
+        columnStyles: {
+          0: { cellWidth: 10 },
+          1: { cellWidth: 45 },
+          2: { cellWidth: 45 },
+          3: { cellWidth: 30 },
+          4: { cellWidth: 45 },
+          5: { cellWidth: 35 },
+          6: { cellWidth: 23 },
+        
+          7: { cellWidth: 30 },
+          
+        },
+        
+        didDrawPage: (data) => {
+          doc.setFontSize(10);
+          
+        }
+      
+      
+      });
+      
+
+      doc.save('listado-usuarios.pdf');
+      alert('Se ha generado el PDF');  
     });
   }
 }
