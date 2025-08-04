@@ -12,18 +12,7 @@ export class SidebarComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogout() {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error('Error al cerrar sesión', err);
-        this.router.navigate(['/login']);
-      }
-    });
-  }
-
+  
 
   @ViewChild('sidebar') sidebar!: ElementRef;
   @ViewChild('toggleButton') toggleButton!: ElementRef;

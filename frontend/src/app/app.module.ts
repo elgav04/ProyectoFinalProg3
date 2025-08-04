@@ -8,6 +8,9 @@ import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
@@ -46,9 +49,14 @@ import { FilterchoferPipe } from './pipes/filterchofer.pipe';
 import { CargasComponent } from './components/cargas/cargas.component';
 import { CargasEditComponent } from './components/cargas-edit/cargas-edit.component';
 import { FiltercargaPipe } from './pipes/filtercarga.pipe';
+
 import { HomeComponent } from './components/home/home.component';
 import { NoAutorizadoComponent } from './components/no-autorizado/no-autorizado.component';
 import { LoginComponent } from './components/login/login.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { JwtHelperService, JWT_OPTIONS }  from '@auth0/angular-jwt'
+
 
 @NgModule({
   declarations: [
@@ -99,9 +107,20 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [DataService],
+  providers: [DataService,
+  { provide: JWT_OPTIONS, 
+    useValue: JWT_OPTIONS },
+  JwtHelperService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

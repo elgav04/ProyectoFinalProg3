@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service'; 
+
+
 
 @Component({
   selector: 'app-login',
@@ -8,26 +11,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  form = {
-    usuario: '',
-    clave: ''
-  };
+  userName = '';
+  pass = '';
 
-  error: string = '';
+  loginForm: FormGroup;
+  errorMessage : string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService // Inyecta el servicio de autenticación
+  ) {
+    this.loginForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      pass: ['', Validators.required]
+    });
+  }
   onSubmit() {
-    console.log(this.form);
-    this.authService.login(this.form).subscribe({
-      next: (res) => {
-
-        this.router.navigate(['/home']);
-
+    this.authService.login(this.userName, this.pass).subscribe({
+      next: () => {
+        const role = this.authService.getRole();
+        console.log('Token almacenado:', this.authService.getToken());
+        console.log('Rol decodificado:', role);
+        if (role === 1) this.router.navigate(['/paises']);
+        else if (role === 2) this.router.navigate(['/empresa']);
+        else if (role === 3) this.router.navigate(['/proveedor']);
       },
-      error: (err) => {
-        this.error = err.error || 'Error al iniciar sesión';
-      }
+      error: err => alert('Credenciales incorrectas')
     });
   }
 }

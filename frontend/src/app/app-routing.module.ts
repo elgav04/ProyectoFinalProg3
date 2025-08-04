@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 import { LoginComponent } from './components/login/login.component';
 import { NoAutorizadoComponent } from './components/no-autorizado/no-autorizado.component';
@@ -57,125 +58,138 @@ const routes: Routes = [
     path: 'no-autorizado',
     component :NoAutorizadoComponent
   },
+
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  // Ruta para manejar rutas no definidas
+  {
+    path: '**',
+    redirectTo: '/login'
+  },
+
+
   {
     path: 'empresas',
     component :EmpresasComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2,4]  }
   },
   {
     path: 'empresas/edit/:id',
     component :EmpresasEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+
   },
   {
     path: 'tipousuarios',
     component :TipousuariosComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1]  }
   },
   {
     path: 'tipousuarios/edit/:id',
     component :TipousuariosEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
+
   },
   {
     path: 'tipoempleado',
     component :TipoempleadoComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1]  }
   },
   {
     path: 'tipoempleado/edit/:id',
     component :TipoempleadoEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
+
   },
   {
     path: 'tipovehiculos',
     component :TipovehiculosComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2]  }
   },
   {
     path: 'tipovehiculos/edit/:id',
     component :TipovehiculosEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
+
   },
   {
     path: 'paises',
     component :PaisesComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2]  }
   },
   {
     path: 'paises/edit/:id',
     component :PaisesEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
+
   },
   {
     path: 'brokers',
     component :BrokersComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2,4]  }
   },
   {
     path: 'brokers/edit/:id',
     component :BrokersEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+
   },
   {
     path: 'warehouses',
     component :WarehousesComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2,4]  }
   },
   {
     path: 'warehouses/edit/:id',
     component :WarehousesEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+
   },
   {
     path: 'transportistas',
     component :TransportistasComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2,4]  }
   },
   {
     path: 'transportistas/edit/:id',
     component :TransportistasEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+
   },
   {
     path: 'empleados',
     component :EmpleadosComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2]  }
   },
   {
     path: 'empleados/edit/:id',
     component :EmpleadosEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR'] }
+
   },
   {
     path: 'usuarios',
     component :UsuariosComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1]  }
   },
   {
     path: 'usuarios/edit/:id',
     component :UsuariosEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR'] }
+    
   },
   {
     path: 'choferes',
     component :ChoferesComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2,4]  }
   },
   {
     path: 'choferes/edit/:id',
     component :ChoferesEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR', 'ASISTENTE OPERATIVO'] }
+
   },
   {
     path: 'cargas',
     component :CargasComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR','DESPACHADOR', 'ASISTENTE OPERATIVO'] }
+    canActivate:  [RoleGuard] ,data: { roles: [1,2,3,4]  }
   },
   {
     path: 'cargas/edit/:id',
     component :CargasEditComponent,
-    canActivate: [AuthGuard],data: { roles: ['ADMINISTRADOR', 'SUPERVISOR','DESPACHADOR', 'ASISTENTE OPERATIVO'] }
+
   }
 
 ];
