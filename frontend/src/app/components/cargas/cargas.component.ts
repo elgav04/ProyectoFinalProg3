@@ -132,7 +132,7 @@ export class CargasComponent implements OnInit {
   //Paises
   cargarPaises(): void {
     this.Data.getDropListPaises().subscribe((data: any) => {
-      this.PaisesListFull = data; // todos los empleados
+      this.PaisesListFull = data; 
       this.PaisesList = data.filter((emp: any) => emp.estado === 'ACTIVO'); // solo activos
     });
   }
@@ -151,7 +151,7 @@ export class CargasComponent implements OnInit {
   //Brokers
   cargarBrokers(): void {
     this.Data.getDropListBrokers().subscribe((data: any) => {
-      this.BrokersListFull = data; // todos los empleados
+      this.BrokersListFull = data; 
       this.BrokersList = data.filter((emp: any) => emp.estado === 'ACTIVO'); // solo activos
     });
   }
@@ -170,7 +170,7 @@ export class CargasComponent implements OnInit {
   //Transportistas
   cargarTransportistas(): void {
     this.Data.getDropListTransportistas().subscribe((data: any) => {
-      this.TransportistasListFull = data; // todos los empleados
+      this.TransportistasListFull = data; 
       this.TransportistasList = data.filter((emp: any) => emp.estado === 'ACTIVO'); // solo activos
     });
   }
@@ -227,7 +227,7 @@ export class CargasComponent implements OnInit {
   //Empleados
   cargarEmpleados(): void {
     this.Data.getDropListEmpleados().subscribe((data: any) => {
-      this.EmpleadosListFull = data; // todos los empleados
+      this.EmpleadosListFull = data; 
       this.EmpleadosList = data.filter((emp: any) => emp.estado === 'ACTIVO'); // solo activos
     });
   }
@@ -265,7 +265,7 @@ export class CargasComponent implements OnInit {
   //Warehouses
   cargarWarehouses(): void {
     this.Data.getDropListWarehouses().subscribe((data: any) => {
-      this.WarehousesListFull = data; // todos los empleados
+      this.WarehousesListFull = data; 
       this.WarehousesList = data.filter((emp: any) => emp.estado === 'ACTIVO'); // solo activos
     });
   }

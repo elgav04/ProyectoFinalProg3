@@ -6,7 +6,6 @@ CREATE TABLE tipousuarios (
     tipousuario VARCHAR(50),
     estado VARCHAR(20)
 );
-select * from tipousuarios;
 
 CREATE TABLE tipoempleado (
     ctipoemp INT AUTO_INCREMENT PRIMARY KEY,
@@ -97,6 +96,9 @@ CREATE TABLE usuarios (
     FOREIGN KEY (ctipousuario) REFERENCES tipousuarios(ctipousuario),
     FOREIGN KEY (cempleado) REFERENCES empleados(cempleado)
 );
+
+ALTER TABLE usuarios ADD COLUMN logged_in TINYINT DEFAULT 0;
+
 CREATE TABLE choferes (
     cchofer  INT AUTO_INCREMENT PRIMARY KEY,
     ctransportista INT,
@@ -148,7 +150,7 @@ CREATE TABLE cargas (
 
 
 /* agreguen columna a la tabla usuarios para la funcionalidad del login */
-ALTER TABLE usuarios ADD COLUMN logged_in TINYINT DEFAULT 0;
+
 
 /* 
 

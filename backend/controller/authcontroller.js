@@ -49,5 +49,4 @@ exports.logout = function (req, res) {
     
     return res.json({ message: 'Sesión cerrada correctamente' });
   });
-  //console.log(query);
 };

@@ -62,13 +62,14 @@ app.use(myConnection(mysql,{
     user:'root',
     password:'**********',
     port:3306,
-    database:'ventas'
+    database:'logistica'
 }, 'single'));
 app.use(express.urlencoded({extended: false}));
 */
 
 var bodyParser = require('body-parser');
- // create application/json parser
+
+ // application/json parser
 app.use(bodyParser.json());
 
 
